@@ -155,15 +155,6 @@
     <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG"/>    
     <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" value="DEBUG" />  -->
 
-	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
-		<file>testFile.log</file>
-		<append>true</append>
-		<encoder>
-			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n
-			</pattern>
-		</encoder>
-	</appender> 
-
     <!-- root级别   DEBUG -->  
     <root level="debug">  
         <!-- 控制台输出 -->  
