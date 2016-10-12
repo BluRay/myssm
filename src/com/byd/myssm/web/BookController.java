@@ -24,16 +24,17 @@ public class BookController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	//@Autowired
-	//private BookService bookService;
+	@Autowired
+	private BookService bookService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	private String list(Model model) {
-		logger.error("---->BookController list");
-		System.out.println("---->BookController list");
+		logger.info("---->BookController list");
 		//List<Book> list = bookService.getList();
 		//model.addAttribute("list", list);
 		// list.jsp + model = ModelAndView
+		
+		bookService.getList();
 		return "book/list";// WEB-INF/jsp/"list".jsp
 	}
 

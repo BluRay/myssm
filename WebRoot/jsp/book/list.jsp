@@ -8,5 +8,6 @@
 </head>
 <body>
 <h1>Book list</h1>
+<input type="button" id="ajaxTest" value="查询"></input>
 </body>
 </html>
