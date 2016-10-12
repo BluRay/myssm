@@ -1,5 +1,6 @@
 package com.byd.myssm.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -25,7 +26,13 @@ public class BookServiceImpl implements BookService{
 		// TODO Auto-generated method stub
 		
 		logger.info("---->BookServiceImpl getList");
-		return null;
+		List<Book> list = new ArrayList<Book>();
+		Book book = new Book();
+		book.setBookId(1);
+		book.setName("TESTBOOK");
+		list.add(book);
+		
+		return list;
 	}
 
 	@Override

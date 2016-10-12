@@ -4,7 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="/myssm/js/jquery-3.1.1.min.js"></script>
 <title>Book list</title>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#ajaxTest").click(function () {
+		$.ajax({
+            url: "/myssm/book/test",
+            dataType : "json",
+            type: "get",
+            data: {
+            },
+            success:function(response){
+            	
+            }
+		});
+    });
+});
+</script>
 </head>
 <body>
 <h1>Book list</h1>
