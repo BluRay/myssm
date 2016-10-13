@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,7 +9,7 @@
 $(document).ready(function () {
 	$("#ajaxTest").click(function () {
 		$.ajax({
-            url: "/myssm/book/test",
+            url: "/myssm/book/test?bookId=测试",
             dataType : "json",
             type: "get",
             data: {

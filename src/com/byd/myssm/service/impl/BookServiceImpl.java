@@ -26,11 +26,16 @@ public class BookServiceImpl implements BookService{
 		// TODO Auto-generated method stub
 		
 		logger.info("---->BookServiceImpl getList");
-		List<Book> list = new ArrayList<Book>();
 		Book book = new Book();
 		book.setBookId(1);
 		book.setName("TESTBOOK");
+		Book book2 = new Book();
+		book2.setBookId(2);
+		book2.setName("TESTBOOK2");
+		//return new Result<Book>(true,book);
+		List<Book> list = new ArrayList<Book>();
 		list.add(book);
+		list.add(book2);
 		
 		return list;
 	}

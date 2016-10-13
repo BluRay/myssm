@@ -5,11 +5,11 @@ package com.byd.myssm.dto;
  */
 public class Result<T> {
 
-	private boolean success;// 是否成功标志
+	private boolean success;	// 是否成功标志
 
-	private T data;// 成功时返回的数据
+	private T data;				// 成功时返回的数据
 
-	private String error;// 错误信息
+	private String message;		// 消息信息
 
 	public Result() {
 	}
@@ -21,9 +21,10 @@ public class Result<T> {
 	}
 
 	// 错误时的构造器
-	public Result(boolean success, String error) {
+	public Result(boolean success, String message) {
 		this.success = success;
-		this.error = error;
+		this.message = message;
+		this.data = null;
 	}
 
 	public boolean isSuccess() {
@@ -42,17 +43,20 @@ public class Result<T> {
 		this.data = data;
 	}
 
-	public String getError() {
-		return error;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setError(String error) {
-		this.error = error;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	@Override
 	public String toString() {
-		return "JsonResult [success=" + success + ", data=" + data + ", error=" + error + "]";
+		String result = "{\"success\":" + success ;
+		result += ((success)?",\"data\":" + data.toString():"");
+		result += ",\"message\":\"" + message + "\"}";
+		return result;
 	}
 
 }

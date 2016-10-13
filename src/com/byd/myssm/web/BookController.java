@@ -1,5 +1,9 @@
 package com.byd.myssm.web;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.byd.myssm.dto.AppointExecution;
 import com.byd.myssm.dto.Result;
 import com.byd.myssm.entity.Book;
@@ -60,18 +63,15 @@ public class BookController {
 		return null;
 	}
 	
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	@RequestMapping(value = "/test", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
 	@ResponseBody
-	private String test(Model model){		
-		Book book = new Book();
-		book.setBookId(1);
-		book.setName("TESTBOOK");
-		//return new Result<Book>(true,book);
-		logger.info(new Result<Book>(true,book).toString());
-		model.addAttribute("book", book);
-		//return new Result<Book>(true,book).toString();
-		//return new Result<>(false, "学号不能为空");
-		return "{\"employees\": [{ \"firstName\":\"Bill\" , \"lastName\":\"Gates\" }]}";
+	private String test(@Param("bookId") String bookId) throws IOException{				
+		List<Book> list = new ArrayList<Book>();
+		list = bookService.getList();
+		bookId = new String(bookId.getBytes("ISO-8859-1"), "UTF-8");
+		logger.info("---->BookController::test bookId =  " + bookId);
+		//return new Result<List<Book>>(true,list).toString();
+		return new Result<List<Book>>(false,bookId + "操作失败！").toString();
 	}
 
 }
