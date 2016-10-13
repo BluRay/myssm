@@ -1,10 +1,7 @@
 package com.byd.myssm.dao;
 
-import java.util.Date;
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
-
 import com.byd.myssm.entity.Book;
 
 public interface BookDao {

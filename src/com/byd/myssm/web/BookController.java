@@ -70,8 +70,8 @@ public class BookController {
 		list = bookService.getList();
 		bookId = new String(bookId.getBytes("ISO-8859-1"), "UTF-8");
 		logger.info("---->BookController::test bookId =  " + bookId);
-		//return new Result<List<Book>>(true,list).toString();
-		return new Result<List<Book>>(false,bookId + "操作失败！").toString();
+		return new Result<List<Book>>(true,list,bookId + "操作成功！").toString();
+		//return new Result<List<Book>>(false,bookId + "操作失败！").toString();
 	}
 
 }

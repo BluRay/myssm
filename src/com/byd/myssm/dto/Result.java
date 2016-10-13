@@ -19,6 +19,12 @@ public class Result<T> {
 		this.success = success;
 		this.data = data;
 	}
+	
+	public Result(boolean success, T data, String message) {
+		this.success = success;
+		this.data = data;
+		this.message = message;
+	}
 
 	// 错误时的构造器
 	public Result(boolean success, String message) {
