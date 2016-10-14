@@ -8,5 +8,10 @@
 </head>
 <body>
 <h2>登录</h2>
+<form action="/myssm/login/dologin/" method="post">
+<input id="username" name="username" type="text">
+<input id="password" name="password" type="password">
+<input type="submit">
+</form>
 </body>
 </html>

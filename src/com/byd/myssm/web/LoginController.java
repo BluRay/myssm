@@ -29,4 +29,19 @@ public class LoginController {
 		session.setAttribute("user", null);
 		return "login";
 	}
+	
+	@RequestMapping(value = "/dologin", method = RequestMethod.POST)
+	private String dologin(HttpServletRequest request){
+		HttpSession session= request.getSession();
+		String username = request.getParameter("username");
+		logger.info("---->loginController dologin username = " + username);
+		//TODO登录验证
+		if("admin".equals(username)){
+			session.setAttribute("user", username);
+		}else{
+			session.setAttribute("user", null);
+		}
+		
+		return "index";
+	}
 }

@@ -24,9 +24,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		String uri = request.getRequestURI();
 		logger.info("---->LoginInterceptor requestUri = " + uri);
 		for (String url : excludedUrls) {
-			if (!uri.endsWith(url)) {
-				response.sendRedirect("/myssm/login/login/");
-				return false;
+			if (uri.endsWith(url)) {
+				//response.sendRedirect("/myssm/login/login/");
+				return true;
 			}
 		}
 
@@ -39,6 +39,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				logger.info("---->LoginInterceptor 未登陆");
 				return true;// 继续登陆请求
 			}
+		}
+		if (uri.contains("login/dologin")) {
+			return true;
 		}
 
 		// 其他情况判断session中是否有key，有的话继续用户的操作

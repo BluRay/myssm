@@ -7,6 +7,8 @@
 <title>404</title>
 </head>
 <body>
-<h2>404</h2>
+<center>
+<img alt="404" onclick="location='/myssm/login/login/'" src="/myssm/img/404.png">
+</center>
 </body>
 </html>
