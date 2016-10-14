@@ -13,5 +13,6 @@
 <input id="password" name="password" type="password">
 <input type="submit">
 </form>
+<%= (session.getAttribute("info") == null)?"":session.getAttribute("info")%>
 </body>
 </html>

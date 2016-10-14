@@ -32,9 +32,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 		// 进入登录页面，判断session中是否有key，有的话重定向到首页，否则进入登录界面
 		if (uri.contains("login/login")) {
+			logger.info("---->LoginInterceptor Session::user = " + request.getSession().getAttribute("user"));
 			if (request.getSession().getAttribute("user") != null) {
 				logger.info("---->LoginInterceptor 已登陆 user = " + request.getSession().getAttribute("user"));
-				response.sendRedirect(request.getContextPath() + "/index");// 默认跟路径为首页
+				//response.sendRedirect(request.getContextPath() + "/index");// 默认跟路径为首页
+				return true;
 			} else {
 				logger.info("---->LoginInterceptor 未登陆");
 				return true;// 继续登陆请求

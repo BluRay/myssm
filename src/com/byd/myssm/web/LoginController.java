@@ -1,6 +1,9 @@
 package com.byd.myssm.web;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,11 +18,18 @@ public class LoginController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	private String login(HttpServletRequest request){
+	private String login(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		logger.info("---->loginController login");
-		HttpSession session= request.getSession();
-		session.setAttribute("user", null);
-		return "login";
+		//HttpSession session= request.getSession();
+		//session.setAttribute("user", null);
+		//session.setAttribute("info", null);
+		if (request.getSession().getAttribute("user") != null) {
+			logger.info("---->LoginInterceptor 已登陆 user = " + request.getSession().getAttribute("user"));
+			//response.sendRedirect(request.getContextPath() + "/index");// 默认跟路径为首页
+			return "index";
+		} else {
+			return "login";
+		}
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -27,6 +37,7 @@ public class LoginController {
 		logger.info("---->loginController logout");
 		HttpSession session= request.getSession();
 		session.setAttribute("user", null);
+		session.setAttribute("info", null);
 		return "login";
 	}
 	
@@ -38,10 +49,12 @@ public class LoginController {
 		//TODO登录验证
 		if("admin".equals(username)){
 			session.setAttribute("user", username);
+			return "index";
 		}else{
 			session.setAttribute("user", null);
+			session.setAttribute("info", username + "登陆失败！");
+			return "login";
 		}
 		
-		return "index";
 	}
 }

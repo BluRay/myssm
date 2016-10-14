@@ -28,13 +28,13 @@
 	<context:component-scan base-package="com.byd.myssm.web" />
 
 	<mvc:interceptors>
-		<mvc:interceptor><!--配置局部拦截器，需要满足下列路径条件 -->
+		<mvc:interceptor><!--配置局部拦截器，需要满足下列路径条件 不拦截静态资源文件 -->
 			<mvc:mapping path="/**" />
 			<bean class="com.byd.myssm.web.LoginInterceptor">
 				<property name="excludeUrls">
 					<list>
 						<value>.png</value>
-						<value>.jpj</value>
+						<value>.jpg</value>
 						<value>.gif</value>
 						<value>.js</value>
 						<value>.css</value>
