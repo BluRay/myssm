@@ -4,6 +4,7 @@ logback日志配置暂时有问题，可以输出日志信息，不能生成日�
 
 TODO:
   +Ajax请求及返回封装
+  +Spring MVC 拦截器
   #session管理
   +数据库访问
   +事务机制

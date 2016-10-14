@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Index</title>
+<title>登陆</title>
 </head>
 <body>
-<h2>Index</h2>
+<h2>登录</h2>
 </body>
 </html>
