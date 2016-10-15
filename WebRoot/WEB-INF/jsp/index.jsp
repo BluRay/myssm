@@ -15,14 +15,14 @@ request.setAttribute("basePath", basePath);
 <h2>${basePath}</h2>
 <h3>单文件上传</h3>
 <form action="${basePath}file/upload" method="post" enctype="multipart/form-data">
-    <label>book_id：</label><input type="text" name="book_id"/><br/>
+    <label>book_id：</label><input type="text" name="bookId"/><br/>
     <label>书名：</label><input type="text" name="name"/><br/>
     <label>封面</label><input type="file" name="file" accept="image/gif, image/jpg, image/png"/><br/>
     <input type="submit" value="提  交"/>
 </form>
 <h3>多文件上传</h3>
 <form action="${basePath}file/multiupload" method="post" enctype="multipart/form-data">
-    <label>book_id：</label><input type="text" name="book_id"/><br/>
+    <label>book_id：</label><input type="text" name="bookId"/><br/>
     <label>书名：</label><input type="text" name="name"/><br/>
     <label>封面1</label><input type="file" name="file" accept="image/gif, image/jpg, image/png"/><br/>
     <label>封面2</label><input type="file" name="file" accept="image/gif, image/jpg, image/png"/><br/>

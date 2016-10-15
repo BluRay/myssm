@@ -34,12 +34,12 @@ public class FileController {
             //生成uuid作为文件名称
             //String uuid = UUID.randomUUID().toString().replaceAll("-","");
         	
-        	String book_id = request.getParameter("book_id");
+        	Long bookid = book.getBookId();
             //获得文件类型（可以判断如果不是图片，禁止上传）
             String contentType=file.getContentType();
             //获得文件后缀名称
             String imageName=contentType.substring(contentType.indexOf("/")+1);
-            path="/upload/images/"+book_id+"."+imageName;
+            path="/upload/images/"+bookid+"."+imageName;
             file.transferTo(new File(pathRoot+path));
         }
         //System.out.println(path);
@@ -62,12 +62,12 @@ public class FileController {
             if(!mf.isEmpty()){
                 //生成uuid作为文件名称
                 //String uuid = UUID.randomUUID().toString().replaceAll("-","");
-            	String book_id = request.getParameter("book_id") + "-" + String.valueOf(file_count);
+            	String bookid = book.getBookId() + "-" + String.valueOf(file_count);
                 //获得文件类型（可以判断如果不是图片，禁止上传）
                 String contentType=mf.getContentType();
                 //获得文件后缀名称
                 String imageName=contentType.substring(contentType.indexOf("/")+1);
-                path="/upload/images/"+book_id+"."+imageName;
+                path="/upload/images/"+bookid+"."+imageName;
                 mf.transferTo(new File(pathRoot+path));
                 listImagePath.add(path);
             }
