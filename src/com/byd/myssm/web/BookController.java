@@ -31,11 +31,6 @@ public class BookController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	private String list(Model model) {
 		logger.info("---->BookController list");
-		//List<Book> list = bookService.getList();
-		//model.addAttribute("list", list);
-		// list.jsp + model = ModelAndView
-		
-		bookService.getList();
 		return "book/list";
 	}
 

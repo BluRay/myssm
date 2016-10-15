@@ -43,6 +43,7 @@
 						<value>.gif</value>
 						<value>.js</value>
 						<value>.css</value>
+						<value>.json</value>
 					</list>
 				</property>
 			</bean>

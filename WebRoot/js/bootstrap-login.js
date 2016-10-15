@@ -118,6 +118,7 @@
                 '</div>',
                 '<div class="form-horizontal normal-button">',
                 '<input type="submit" class="btn btn-primary" value="' + locale.sign_in + '" />',
+                '<span class="alert" id="reg">注册</span>',
                 '<span class="alert" id="info"></span>',
                 '</div>',
                 '</form>',

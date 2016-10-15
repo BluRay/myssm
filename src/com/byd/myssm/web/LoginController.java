@@ -22,7 +22,6 @@ public class LoginController {
 		logger.info("---->loginController login");
 		if (request.getSession().getAttribute("user") != null) {
 			logger.info("---->LoginInterceptor 已登陆 user = " + request.getSession().getAttribute("user"));
-			//response.sendRedirect(request.getContextPath() + "/index");// 默认跟路径为首页
 			return "index";
 		} else {
 			return "login";
@@ -42,17 +41,14 @@ public class LoginController {
 	private String dologin(HttpServletRequest request){
 		HttpSession session= request.getSession();
 		String username = request.getParameter("username");
-		logger.info("---->loginController dologin username = " + username);
 		//TODO登录验证
 		if("admin".equals(username)){
 			session.setAttribute("user", username);
-			return "index";
+			return "redirect:/index";
 		}else{
 			session.setAttribute("user", null);
 			session.setAttribute("info", username + "登陆失败！");
-			//return "login";
 			return "redirect:/login";
 		}
-		
 	}
 }

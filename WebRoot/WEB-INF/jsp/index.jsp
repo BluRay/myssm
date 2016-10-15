@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -13,7 +12,8 @@ request.setAttribute("basePath", basePath);
 </head>
 <body>
 <h2>${basePath}</h2>
-<a href="${basePath}login/logout">logout</a>
+<a href="${basePath}login/logout">logout</a><br/>
+<a href="${basePath}book/list">bootstrap table list</a>
 <h3>单文件上传</h3>
 <form action="${basePath}file/upload" method="post" enctype="multipart/form-data">
     <label>book_id：</label><input type="text" name="bookId"/><br/>
