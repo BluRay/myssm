@@ -20,9 +20,6 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	private String login(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		logger.info("---->loginController login");
-		//HttpSession session= request.getSession();
-		//session.setAttribute("user", null);
-		//session.setAttribute("info", null);
 		if (request.getSession().getAttribute("user") != null) {
 			logger.info("---->LoginInterceptor 已登陆 user = " + request.getSession().getAttribute("user"));
 			//response.sendRedirect(request.getContextPath() + "/index");// 默认跟路径为首页
