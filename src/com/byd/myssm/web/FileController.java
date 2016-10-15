@@ -44,7 +44,8 @@ public class FileController {
         }
         //System.out.println(path);
         request.setAttribute("imagesPath", path);
-        return "index";
+        //return "index";
+        return "redirect:/index";  
     }
 	
 	@RequestMapping(value="/multiupload",method=RequestMethod.POST)
@@ -75,7 +76,7 @@ public class FileController {
         }
         
         request.setAttribute("imagesPathList", listImagePath);
-        return "index";
+        return "redirect:/index";
     }
 	
     //因为我的JSP在WEB-INF目录下面，浏览器无法直接访问

@@ -50,7 +50,8 @@ public class LoginController {
 		}else{
 			session.setAttribute("user", null);
 			session.setAttribute("info", username + "登陆失败！");
-			return "login";
+			//return "login";
+			return "redirect:/login";
 		}
 		
 	}

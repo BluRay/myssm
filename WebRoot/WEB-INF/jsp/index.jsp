@@ -13,6 +13,7 @@ request.setAttribute("basePath", basePath);
 </head>
 <body>
 <h2>${basePath}</h2>
+<a href="${basePath}login/logout">logout</a>
 <h3>单文件上传</h3>
 <form action="${basePath}file/upload" method="post" enctype="multipart/form-data">
     <label>book_id：</label><input type="text" name="bookId"/><br/>
