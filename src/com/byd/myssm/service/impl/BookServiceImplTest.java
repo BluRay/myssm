@@ -14,7 +14,7 @@ public class BookServiceImplTest {
 	
 	@Test
     public void testAppoint() throws Exception{
-		List<Book> booklist = bookService.getList("name",0,15);
+		List<Book> booklist = bookService.getList("desc","name",0,15);
 		System.out.println("test");
 	}
 

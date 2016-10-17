@@ -62,7 +62,7 @@ $(document).ready(function () {
                 {
                     field: 'state',checkbox: true,rowspan: 2,align: 'center',valign: 'middle'
                 }, {
-                    title: '图书编号',field: 'bookId',rowspan: 2,align: 'center',valign: 'middle',
+                    title: '图书编号',width:'120px',field: 'bookId',rowspan: 2,align: 'center',valign: 'middle',
                     sortable: true,footerFormatter: totalTextFormatter
                 }, {
                     title: '详细信息',colspan: 3,align: 'center'

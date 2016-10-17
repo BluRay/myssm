@@ -23,7 +23,7 @@ public interface BookService {
 	 * 
 	 * @return
 	 */
-	List<Book> getList(String asc,int offset,int limit);
+	List<Book> getList(String sort,String asc,int offset,int limit);
 	
 	int getTotalCount();	//获取查询图书总数
 

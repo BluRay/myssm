@@ -7,37 +7,33 @@
 	<select id="queryById" resultType="Book" parameterType="long">
 		<!-- 具体的sql -->
 		SELECT
-			book_id,
+			bookId,
 			name,
 			number
 		FROM
 			book
 		WHERE
-			book_id = #{bookId}
+			bookId = #{bookId}
 	</select>
 	
 	<select id="queryAll" resultType="Book">
-		SELECT
-			book_id,
-			name,
-			price,
-			number
-		FROM
-			book
-		ORDER BY
-			book_id
+		SELECT bookId,name,price,number
+		FROM book
+		<if test="sort!=null">
+			 ORDER BY ${sort} ${order} 
+		</if>
 		LIMIT #{offset}, #{limit}
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-		SELECT count(book_id) FROM book
+		SELECT count(bookId) FROM book
 	</select>
 	
 	<update id="reduceNumber">
 		UPDATE book
 		SET number = number - 1
 		WHERE
-			book_id = #{bookId}
+			bookId = #{bookId}
 		AND number > 0
 	</update>
 </mapper>

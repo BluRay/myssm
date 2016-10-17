@@ -60,14 +60,15 @@ public class BookController {
 	
 	@RequestMapping(value = "/getBooKList", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
 	@ResponseBody
-	private String getBooKList(@Param("order") String order,@Param("offset") int offset,@Param("limit") int limit) throws IOException{				
-		order = new String(order.getBytes("ISO-8859-1"), "UTF-8");
+	private String getBooKList(@Param("sort") String sort,@Param("order") String order,@Param("offset") int offset,@Param("limit") int limit) throws IOException{				
+		//sort = new String(sort.getBytes("ISO-8859-1"), "UTF-8");
+		//order = new String(order.getBytes("ISO-8859-1"), "UTF-8");
 		//offset = Integer.parseInt(new String(offset.getBytes("ISO-8859-1"), "UTF-8"));
 		//limit = new String(limit.getBytes("ISO-8859-1"), "UTF-8");
 		
-		logger.info("---->BookController::getBooKList order =  " + order + ";offset = " + offset + ";limit = " + limit);
+		logger.info("---->BookController::getBooKList sort = " + sort + ";order = " + order + ";offset = " + offset + ";limit = " + limit);
 		List<Book> list = new ArrayList<Book>();
-		list = bookService.getList("name",offset,limit);
+		list = bookService.getList(sort,order,offset,limit);
 		int total = bookService.getTotalCount();
 		return new Result<List<Book>>(true,list,total).toJsonString();
 	}
@@ -76,7 +77,7 @@ public class BookController {
 	@ResponseBody
 	private String test(@Param("bookId") String bookId) throws IOException{				
 		List<Book> list = new ArrayList<Book>();
-		list = bookService.getList("name",0,15);
+		list = bookService.getList("desc","name",0,15);
 		bookId = new String(bookId.getBytes("ISO-8859-1"), "UTF-8");
 		logger.info("---->BookController::test bookId =  " + bookId);
 		return new Result<List<Book>>(true,list,bookId + "操作成功！").toString();

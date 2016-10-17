@@ -41,10 +41,10 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	@Transactional(rollbackFor=Exception.class)
-	public List<Book> getList(String asc,int offset,int limit) {		
+	public List<Book> getList(String sort,String order,int offset,int limit) {		
 		logger.info("---->BookServiceImpl getList");
 		List<Book> list = new ArrayList<Book>();
-		list = bookDao.queryAll(offset, limit);
+		list = bookDao.queryAll(sort,order,offset, limit);
 		//throw new RuntimeException("A runtime exception");	//role back
 		return list;
 	}
