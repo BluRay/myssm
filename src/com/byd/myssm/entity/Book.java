@@ -5,11 +5,13 @@ package com.byd.myssm.entity;
  */
 public class Book {
 
-	private long bookId;// 图书ID
+	private long bookId;	// 图书ID
 
-	private String name;// 图书名称
+	private String name;	// 图书名称
+	
+	private String price;	//价格
 
-	private int number;// 馆藏数量
+	private int number;		// 馆藏数量
 
 	public Book() {
 	}
@@ -38,6 +40,14 @@ public class Book {
 
 	public int getNumber() {
 		return number;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
 	}
 
 	public void setNumber(int number) {

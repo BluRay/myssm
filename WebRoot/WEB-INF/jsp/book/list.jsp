@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 request.setAttribute("basePath", basePath);
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,11 +33,8 @@ $(document).ready(function () {
 });
 </script>
 </head>
-<body>
-<h1>Book list</h1>
-<input type="button" id="ajaxTest" value="查询"></input>
 <div class="container">
-    <h1>Bootstrap Table Examples <a href="${basePath}login/logout" class="btn btn-primary" role="button" target="_blank">logout&raquo;</a></h1>
+    <h1>Bootstrap Table Examples <a href="${basePath}login/logout" class="btn btn-primary" role="button" >logout</a></h1>
     <div id="toolbar">
         <button id="remove" class="btn btn-danger" disabled>
             <i class="glyphicon glyphicon-remove"></i> Delete
