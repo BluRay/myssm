@@ -20,12 +20,17 @@
 		SELECT
 			book_id,
 			name,
+			price,
 			number
 		FROM
 			book
 		ORDER BY
 			book_id
 		LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT count(book_id) FROM book
 	</select>
 	
 	<update id="reduceNumber">

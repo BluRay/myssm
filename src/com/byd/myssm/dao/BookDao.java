@@ -22,6 +22,8 @@ public interface BookDao {
 	 * @return
 	 */
 	List<Book> queryAll(@Param("offset") int offset, @Param("limit") int limit);
+	
+	int getTotalCount();	//获取查询图书总数
 
 	/**
 	 * 减少馆藏数量

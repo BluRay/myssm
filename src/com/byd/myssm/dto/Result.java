@@ -10,6 +10,8 @@ public class Result<T> {
 	private T data;				// 成功时返回的数据
 
 	private String message;		// 消息信息
+	
+	private int total;			//返回数据总数
 
 	public Result() {
 	}
@@ -18,6 +20,13 @@ public class Result<T> {
 	public Result(boolean success, T data) {
 		this.success = success;
 		this.data = data;
+	}
+	
+	// 成功时的构造器
+	public Result(boolean success, T data, int total) {
+		this.success = success;
+		this.data = data;
+		this.total = total;
 	}
 	
 	public Result(boolean success, T data, String message) {
@@ -57,6 +66,14 @@ public class Result<T> {
 		this.message = message;
 	}
 
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
 	@Override
 	public String toString() {
 		String result = "{\"success\":" + success ;
@@ -65,4 +82,9 @@ public class Result<T> {
 		return result;
 	}
 
+	public String toJsonString(){
+		String result = "{\"total\":" + total ;
+		result += ((success)?",\"rows\":" + data.toString():"") + "}";
+		return result;
+	}
 }

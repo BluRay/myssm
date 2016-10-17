@@ -19,11 +19,13 @@ public interface BookService {
 	Book getById(long bookId);
 
 	/**
-	 * 查询所有图书
+	 * 分页查询图书
 	 * 
 	 * @return
 	 */
-	List<Book> getList();
+	List<Book> getList(String asc,int offset,int limit);
+	
+	int getTotalCount();	//获取查询图书总数
 
 	/**
 	 * 预约图书
