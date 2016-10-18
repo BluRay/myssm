@@ -55,6 +55,11 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
+	public boolean updateBook(Book book) {
+		return bookDao.updateBook(book);
+	}
+
+	@Override
 	public AppointExecution appoint(long bookId, long studentId) {
 		// TODO Auto-generated method stub
 		return null;

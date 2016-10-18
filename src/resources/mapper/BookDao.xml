@@ -29,11 +29,12 @@
 		SELECT count(bookId) FROM book
 	</select>
 	
+	<update id="updateBook" parameterType="Book">
+		UPDATE book SET price = #{book.price} WHERE bookId = #{book.bookId}
+	</update>
+	
 	<update id="reduceNumber">
-		UPDATE book
-		SET number = number - 1
-		WHERE
-			bookId = #{bookId}
-		AND number > 0
+		UPDATE book SET number = number - 1
+		WHERE bookId = #{bookId} AND number > 0
 	</update>
 </mapper>

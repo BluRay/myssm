@@ -24,6 +24,8 @@ public interface BookDao {
 	List<Book> queryAll(@Param("sort") String sort,@Param("order") String order,@Param("offset") int offset, @Param("limit") int limit);
 	
 	int getTotalCount();	//获取查询图书总数
+	
+	boolean updateBook(@Param("book") Book book);	//修改图书信息
 
 	/**
 	 * 减少馆藏数量

@@ -26,6 +26,8 @@ public interface BookService {
 	List<Book> getList(String sort,String asc,int offset,int limit);
 	
 	int getTotalCount();	//获取查询图书总数
+	
+	boolean updateBook(Book book);
 
 	/**
 	 * 预约图书

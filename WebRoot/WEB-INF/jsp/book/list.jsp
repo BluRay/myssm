@@ -20,10 +20,13 @@ request.setAttribute("basePath", basePath);
 $(document).ready(function () {
 	$("#ajaxTest").click(function () {
 		$.ajax({
-            url: "/myssm/book/getBooKList?order=asc&offset=0&limit=10",
+            url: "/myssm/book/updateBook",
             dataType : "json",
             type: "get",
             data: {
+            	"bookId":1000,
+            	"name":"ddd",
+            	"price":"88.88"
             },
             success:function(response){
             	alert(response.message);
@@ -33,8 +36,9 @@ $(document).ready(function () {
 });
 </script>
 </head>
-<div class="container">
-    <h1>Bootstrap Table Examples <a href="${basePath}login/logout" class="btn btn-primary" role="button" >logout</a></h1>
+<body>
+<div class="container" style="height:300px">
+    <h1>Bootstrap Table Examples 分页 列可选择 列可排序 单页数据导出<a href="${basePath}login/logout" class="btn btn-primary" role="button" >logout</a></h1>
     <div id="toolbar">
         <button id="remove" class="btn btn-danger" disabled>
             <i class="glyphicon glyphicon-remove"></i> Delete
@@ -70,10 +74,10 @@ $(document).ready(function () {
             ],
             [
                 {
-                    field: 'name',title: '书名',sortable: true,editable: true,
+                    field: 'name',title: '书名',width:'300px',sortable: true,editable: true,
                     footerFormatter: totalNameFormatter,align: 'center'
                 }, {
-                    field: 'price',title: '价格',sortable: true,align: 'center',
+                    field: 'price',title: '价格',sortable: false,align: 'center',
                     editable: {
                         type: 'text',
                         title: '价格',
@@ -83,17 +87,18 @@ $(document).ready(function () {
                                 return 'This field is required';
                             }
                             if (!/^\$/.test(value)) {
-                                return 'This field needs to start width $.'
+                                //return 'This field needs to start width $.'
                             }
                             var data = $table.bootstrapTable('getData'),
                                 index = $(this).parents('tr').data('index');
-                            console.log(data[index]);
+                            console.log("---->data : id = " + data[index].bookId + " sort = price" + " newvalue = " +value);
+                            ajaxEdit(data[index].bookId,value);
                             return '';
                         }
                     },
                     footerFormatter: totalPriceFormatter
                 }, {
-                    field: 'operate',title: 'aa',align: 'center',
+                    field: 'operate',title: '操作',align: 'center',
                     events: operateEvents,formatter: operateFormatter
                 }
             ]
@@ -261,6 +266,21 @@ $(document).ready(function () {
 
         // We handle everything using the script element injection
         return undefined;
+    }
+    
+    function ajaxEdit(bookId,price){
+    	$.ajax({
+            url: "/myssm/book/updateBook",
+            dataType : "json",
+            type: "get",
+            data: {
+            	"bookId":bookId,
+            	"price":price
+            },
+            success:function(response){
+            	alert(response.message);
+            }
+		});
     }
 </script>
 </body>

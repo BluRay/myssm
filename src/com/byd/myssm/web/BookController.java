@@ -73,6 +73,21 @@ public class BookController {
 		return new Result<List<Book>>(true,list,total).toJsonString();
 	}
 	
+	@RequestMapping(value = "/updateBook", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	private String updateBook(
+			@Param("bookId") Long bookId, 
+			@Param("name") String name, 
+			@Param("price") String price){
+		logger.info("---->BookController::updateBook bookId = " + bookId);
+		Book book = new Book();
+		book.setBookId(bookId);
+		book.setName(name);
+		book.setPrice(price);
+		bookService.updateBook(book);
+		return "";
+	}
+	
 	@RequestMapping(value = "/test", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
 	@ResponseBody
 	private String test(@Param("bookId") String bookId) throws IOException{				
