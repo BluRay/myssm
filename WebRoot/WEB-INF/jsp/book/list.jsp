@@ -19,6 +19,7 @@ request.setAttribute("basePath", basePath);
 <script type="text/javascript">
 $(document).ready(function () {
 	$("#ajaxTest").click(function () {
+		/**
 		$.ajax({
             url: "/myssm/book/updateBook",
             dataType : "json",
@@ -32,6 +33,8 @@ $(document).ready(function () {
             	alert(response.message);
             }
 		});
+		**/
+		initTable();
     });
 });
 </script>
