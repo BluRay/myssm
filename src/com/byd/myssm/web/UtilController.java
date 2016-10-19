@@ -17,5 +17,10 @@ public class UtilController {
 	private String login(HttpServletRequest request, HttpServletResponse response){
 		return "index";
 	}
+	
+	@RequestMapping(value = "/jjq", method = RequestMethod.GET)
+	private String jjq(HttpServletRequest request, HttpServletResponse response){
+		return "jjq_index";
+	}
 
 }

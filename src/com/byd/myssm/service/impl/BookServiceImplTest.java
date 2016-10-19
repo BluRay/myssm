@@ -34,6 +34,7 @@ public class BookServiceImplTest {
             while(rs.next()) {
                 System.out.println(rs.getString(2));
             }
+            conn.close();
             
         } catch (Exception e) {
             e.printStackTrace();
