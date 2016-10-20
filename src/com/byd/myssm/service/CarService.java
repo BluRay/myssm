@@ -13,5 +13,9 @@ public interface CarService {
 	 * @param limit
 	 * @return
 	 */
-	List<Car> getList(String sort,String asc,int offset,int limit);
+	List<Car> getList(String search,String sort,String asc,int offset,int limit);
+	
+	int getTotalCount(String search);
+
+	boolean updateCar(String param,String id,String value);
 }

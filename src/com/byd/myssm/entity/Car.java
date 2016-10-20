@@ -61,8 +61,8 @@ public class Car {
 	
 	@Override
 	public String toString() {
-		return "{\"id\":" + id + ", \"chepai\":\"" + chepai + "\", \"gongsi\":\"" +
+		return "{\"id\":" + id + ", \"chepai\":\"湘 A·" + chepai + "\", \"gongsi\":\"" +
 	gongsi + "\", \"siji\":\"" + siji + "\", \"dianhua\":\"" + dianhua +
-	"\", \"anzhuangriqi\":\"" + anzhuangriqi + "\", \"jijiaqihao\":\"" + jijiaqihao + "\", \"beizhu\":" + beizhu + "}";
+	"\", \"anzhuangriqi\":\"" + anzhuangriqi + "\", \"jijiaqihao\":\"" + jijiaqihao + "\", \"beizhu\":\"" + beizhu + "\"}";
 	}
 }
