@@ -22,7 +22,8 @@ public class LoginController {
 		logger.info("---->loginController login");
 		if (request.getSession().getAttribute("user") != null) {
 			logger.info("---->LoginInterceptor 已登陆 user = " + request.getSession().getAttribute("user"));
-			return "index";
+			//return "index";
+			return "redirect:/jjq";
 		} else {
 			return "login";
 		}

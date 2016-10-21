@@ -17,6 +17,7 @@ request.setAttribute("basePath", basePath);
 <link rel="stylesheet" href="../css/index.css">
 <title>Book list</title>
 <script type="text/javascript">
+var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"},{value:"2",text:"销售部2"},{value:"3",text:"行政部"}];
 </script>
 </head>
 <body>
@@ -66,7 +67,7 @@ request.setAttribute("basePath", basePath);
                 }, {
                     field: 'gongsi',title: '公司',width:'220px',sortable: true,align: 'center',
                     editable: {
-                        type: 'text',title: '公司',
+                        type: 'text',title: '公司',emptytext:'未填写公司',
                         validate: function (value) {
                             value = $.trim(value);
                             if (!value) {
@@ -81,19 +82,69 @@ request.setAttribute("basePath", basePath);
                     },
                     footerFormatter: totalPriceFormatter
                 },{
-                    field: 'jijiaqihao',title: '计价器号',width:'100px',editable: true,
+                    field: 'jijiaqihao',title: '计价器号',width:'100px',
+                    editable:{
+                    	emptytext:'未填写计价器号',
+                    	validate: function (value) {
+                            value = $.trim(value);
+                            var data = $table.bootstrapTable('getData'),
+                                index = $(this).parents('tr').data('index');
+                            ajaxEdit("jjq_no",data[index].id,value);
+                            return '';
+                        }
+                    },
                     footerFormatter: totalNameFormatter,align: 'center'
                 },{
-                    field: 'siji',title: '司机',width:'80px',editable: true,
+                    field: 'siji',title: '司机编号',width:'80px',
+                    editable:{
+                    	emptytext:'未填写司机',
+                    	validate: function (value) {
+                            value = $.trim(value);
+                            var data = $table.bootstrapTable('getData'),
+                                index = $(this).parents('tr').data('index');
+                            ajaxEdit("jjq_driname",data[index].id,value);
+                            return '';
+                        }
+                    },
                     footerFormatter: totalNameFormatter,align: 'center'
                 }, {
-                    field: 'dianhua',title: '联系电话',width:'100px',editable: true,
+                    field: 'dianhua',title: '联系电话',width:'100px',
+                    editable:{
+                    	emptytext:'未填写电话',
+                    	validate: function (value) {
+                            value = $.trim(value);
+                            var data = $table.bootstrapTable('getData'),
+                                index = $(this).parents('tr').data('index');
+                            ajaxEdit("jjq_dritel",data[index].id,value);
+                            return '';
+                        }
+                    },
                     footerFormatter: totalNameFormatter,align: 'center'
                 },{
-                    field: 'anzhuangriqi',title: '起始日期',width:'100px',sortable: true,editable: true,
+                    field: 'anzhuangriqi',title: '起始日期',width:'100px',sortable: true,
+                    editable:{
+                    	emptytext:'未填写日期',
+                    	validate: function (value) {
+                            value = $.trim(value);
+                            var data = $table.bootstrapTable('getData'),
+                                index = $(this).parents('tr').data('index');
+                            ajaxEdit("jjq_sdate",data[index].id,value);
+                            return '';
+                        }
+                    },
                     footerFormatter: totalNameFormatter,align: 'center'
                 },{
-                    field: 'beizhu',title: '备注',editable: true,
+                    field: 'beizhu',title: '备注',
+                    editable:{
+                    	emptytext:'未填写备注',
+                    	validate: function (value) {
+                            value = $.trim(value);
+                            var data = $table.bootstrapTable('getData'),
+                                index = $(this).parents('tr').data('index');
+                            ajaxEdit("tel_memo",data[index].id,value);
+                            return '';
+                        }
+                    },
                     footerFormatter: totalNameFormatter,align: 'center'
                 }, {
                     field: 'operate',title: '操作',width:'40px',align: 'center',
@@ -275,7 +326,6 @@ request.setAttribute("basePath", basePath);
             	"value":value
             },
             success:function(response){
-            	alert(response.message);
             }
 		});
     }
@@ -291,7 +341,8 @@ request.setAttribute("basePath", basePath);
                 	"id":id
                 },
                 success:function(response){
-                	alert(response.message);
+                	//alert(response.message);
+                	$table.bootstrapTable('refresh');
                 }
     		});
     	}

@@ -26,14 +26,14 @@ public class BookServiceImplTest {
             Connection conn = DriverManager.getConnection(url, "", "");
             
             Statement stat =conn.createStatement();
-            String sql = "select * from jjq_company where co_ID = '7'";
-            //String sql = "update jjq_company set co_name = '123' where co_ID = '7'";
-            
-            
-            ResultSet rs =stat.executeQuery(sql);
-            while(rs.next()) {
-                System.out.println(rs.getString(2));
-            }
+            //String sql = "UPDATE jjq_jjq a,car_info b SET a.jjq_coid = b.company WHERE a.jjq_cepai = b.cepai";
+            //String sql = "update jjq_jjq j set j.jjq_coid = (select c.company from car_info c where c.cepai = j.jjq_cepai) ";
+            String sql = "update jjq_jjq set jjq_jjq.jjq_coid='eeess' where jjq_jjq.jjq_cepai='000'";
+//            		update daolu set daolu.ID=daolu_info.id 
+//            		from daolu Left join daolu_info on daolu.NAME = daolu_info.name
+
+            stat.executeUpdate(sql);
+           
             conn.close();
             
         } catch (Exception e) {

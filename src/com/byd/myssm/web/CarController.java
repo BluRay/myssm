@@ -45,8 +45,15 @@ public class CarController {
 	@ResponseBody
 	private String updateCar(@Param("param") String param, @Param("id") String id, @Param("value") String value) throws IOException{
 		value = new String(value.getBytes("ISO-8859-1"), "UTF-8");
-		carService.updateCar(param, id, value);		
-		return "";
+		carService.updateCar(param, id, value);	
+		return "{\"success\":true}";
+	}
+	
+	@RequestMapping(value = "/deleteCar", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	private String deleteCar(@Param("id") String id){
+		carService.deleteCar(id);
+		return "{\"success\":true}";
 	}
 
 }

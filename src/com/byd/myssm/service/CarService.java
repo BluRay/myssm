@@ -18,4 +18,6 @@ public interface CarService {
 	int getTotalCount(String search);
 
 	boolean updateCar(String param,String id,String value);
+	
+	boolean deleteCar(String id);
 }

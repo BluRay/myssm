@@ -104,4 +104,26 @@ public class CarServiceImpl implements CarService {
 		return true;
 	}
 
+	@Override
+	public boolean deleteCar(String id) {
+		try {
+			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
+	        String url = "jdbc:Access:////home/yangke/JJQMS.mdb";
+	        Connection conn = DriverManager.getConnection(url, "", "");
+	        
+	        Statement stat =conn.createStatement();
+	        String sql = "delete from jjq_jjq where jjq_ID = '" + id + "'";
+	        System.out.println(sql);
+	        stat.executeUpdate(sql);
+	        conn.close();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
 }
