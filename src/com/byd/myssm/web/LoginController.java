@@ -45,7 +45,8 @@ public class LoginController {
 		//TODO登录验证
 		if("admin".equals(username)){
 			session.setAttribute("user", username);
-			return "redirect:/index";
+			//return "redirect:/index";
+			return "redirect:/jjq";
 		}else{
 			session.setAttribute("user", null);
 			session.setAttribute("info", username + "登陆失败！");

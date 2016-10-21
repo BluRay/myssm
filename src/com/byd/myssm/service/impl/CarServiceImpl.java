@@ -1,5 +1,9 @@
 package com.byd.myssm.service.impl;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+
 import org.springframework.stereotype.Service;
 import com.byd.myssm.entity.Car;
 import com.byd.myssm.service.CarService;
@@ -15,12 +21,16 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public List<Car> getList(String search,String sort, String asc, int offset, int limit) {
-		List<Car> list = new ArrayList<Car>();
+		List<Car> list = new ArrayList<Car>();  
 		try {
+			Properties prop = new Properties();
+			InputStream in = CarServiceImpl.class.getResourceAsStream("/resources/jdbc.properties");
+			prop.load(in);   
+            String url = prop.getProperty("access_path").trim();
+            in.close();
 			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
-	        String url = "jdbc:Access:////home/yangke/JJQMS.mdb";
+	        //String url = "jdbc:Access:////home/yangke/JJQMS.mdb";
 	        Connection conn = DriverManager.getConnection(url, "", "");
-	        
 	        Statement stat =conn.createStatement();
 	        String sql = "";
 	        if (search != null){
@@ -50,6 +60,8 @@ public class CarServiceImpl implements CarService {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
@@ -59,7 +71,11 @@ public class CarServiceImpl implements CarService {
 		int totalCount = 0;
 		try {
 			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
-	        String url = "jdbc:Access:////home/yangke/JJQMS.mdb";
+			Properties prop = new Properties();
+			InputStream in = CarServiceImpl.class.getResourceAsStream("/resources/jdbc.properties");
+			prop.load(in);   
+            String url = prop.getProperty("access_path").trim();
+            in.close();
 	        Connection conn = DriverManager.getConnection(url, "", "");
 	        
 	        Statement stat =conn.createStatement();
@@ -78,6 +94,8 @@ public class CarServiceImpl implements CarService {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return totalCount;
 	}
@@ -86,7 +104,11 @@ public class CarServiceImpl implements CarService {
 	public boolean updateCar(String param, String id, String value) {
 		try {
 			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
-	        String url = "jdbc:Access:////home/yangke/JJQMS.mdb";
+			Properties prop = new Properties();
+			InputStream in = CarServiceImpl.class.getResourceAsStream("/resources/jdbc.properties");
+			prop.load(in);   
+            String url = prop.getProperty("access_path").trim();
+            in.close();
 	        Connection conn = DriverManager.getConnection(url, "", "");
 	        
 	        Statement stat =conn.createStatement();
@@ -100,6 +122,8 @@ public class CarServiceImpl implements CarService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return true;
 	}
@@ -108,7 +132,11 @@ public class CarServiceImpl implements CarService {
 	public boolean deleteCar(String id) {
 		try {
 			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
-	        String url = "jdbc:Access:////home/yangke/JJQMS.mdb";
+			Properties prop = new Properties();
+			InputStream in = CarServiceImpl.class.getResourceAsStream("/resources/jdbc.properties");
+			prop.load(in);   
+            String url = prop.getProperty("access_path").trim();
+            in.close();
 	        Connection conn = DriverManager.getConnection(url, "", "");
 	        
 	        Statement stat =conn.createStatement();
@@ -122,6 +150,8 @@ public class CarServiceImpl implements CarService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return true;
 	}
