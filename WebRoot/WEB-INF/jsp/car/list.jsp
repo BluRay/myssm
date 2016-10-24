@@ -29,7 +29,7 @@ var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"
         </button>
     </div>
     <table id="table" data-toolbar="#toolbar" data-search="true" data-show-refresh="true"
-           data-show-toggle="true" data-show-columns="true" data-show-export="true" data-detail-view="true"
+           data-show-toggle="true" data-show-columns="true" data-show-export="true" data-detail-view="false"
            data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-show-pagination-switch="true"
            data-pagination="true" data-id-field="id" data-page-list="[50, 100, 200, 500, ALL]"
            data-show-footer="false" data-side-pagination="server"

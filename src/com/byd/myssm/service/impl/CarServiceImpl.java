@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -25,7 +26,8 @@ public class CarServiceImpl implements CarService {
 		try {
 			Properties prop = new Properties();
 			InputStream in = CarServiceImpl.class.getResourceAsStream("/resources/jdbc.properties");
-			prop.load(in);   
+			prop.load(new InputStreamReader(in, "UTF-8")); 
+			//prop.load(in);   
             String url = prop.getProperty("access_path").trim();
             in.close();
 			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
@@ -73,7 +75,7 @@ public class CarServiceImpl implements CarService {
 			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
 			Properties prop = new Properties();
 			InputStream in = CarServiceImpl.class.getResourceAsStream("/resources/jdbc.properties");
-			prop.load(in);   
+			prop.load(new InputStreamReader(in, "UTF-8")); 
             String url = prop.getProperty("access_path").trim();
             in.close();
 	        Connection conn = DriverManager.getConnection(url, "", "");
@@ -106,7 +108,7 @@ public class CarServiceImpl implements CarService {
 			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
 			Properties prop = new Properties();
 			InputStream in = CarServiceImpl.class.getResourceAsStream("/resources/jdbc.properties");
-			prop.load(in);   
+			prop.load(new InputStreamReader(in, "UTF-8")); 
             String url = prop.getProperty("access_path").trim();
             in.close();
 	        Connection conn = DriverManager.getConnection(url, "", "");
@@ -134,7 +136,7 @@ public class CarServiceImpl implements CarService {
 			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
 			Properties prop = new Properties();
 			InputStream in = CarServiceImpl.class.getResourceAsStream("/resources/jdbc.properties");
-			prop.load(in);   
+			prop.load(new InputStreamReader(in, "UTF-8")); 
             String url = prop.getProperty("access_path").trim();
             in.close();
 	        Connection conn = DriverManager.getConnection(url, "", "");

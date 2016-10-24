@@ -189,7 +189,7 @@
 
     $.fn.bootstrapLogin.defaults = {
         lang: 'zh_CN', //'zh_CN' or 'en'
-        title: 'Bootstrap Login',
+        title: '',
         type: 'normal', //'normal' or 'dropdown'
         action: '/myssm/login/dologin/',
         onSubmit: function () {
