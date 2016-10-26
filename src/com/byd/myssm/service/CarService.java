@@ -2,6 +2,7 @@ package com.byd.myssm.service;
 
 import java.util.List;
 import com.byd.myssm.entity.Car;
+import com.byd.myssm.entity.Company;
 
 public interface CarService {
 	
@@ -20,4 +21,12 @@ public interface CarService {
 	boolean updateCar(String param,String id,String value);
 	
 	boolean deleteCar(String id);
+	
+	List<Company> getCompanyList(String search,String sort,String asc,int offset,int limit);
+	
+	int getCompanyTotalCount(String search);
+	
+	boolean updateCompany(String param,String id,String value);
+	
+	boolean deleteCompany(String id);
 }

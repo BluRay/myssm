@@ -1,7 +1,5 @@
 package com.byd.myssm.service.impl;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,6 +14,7 @@ import java.util.Properties;
 
 import org.springframework.stereotype.Service;
 import com.byd.myssm.entity.Car;
+import com.byd.myssm.entity.Company;
 import com.byd.myssm.service.CarService;
 @Service
 public class CarServiceImpl implements CarService {
@@ -37,7 +36,7 @@ public class CarServiceImpl implements CarService {
 	        String sql = "";
 	        if (search != null){
 	        	sql = " SELECT TOP " + limit + "  *  FROM jjq_jjq where jjq_ID not in(select top " +
-	        	offset + " jjq_ID from jjq_jjq where (jjq_cepai like '%"+search+"%' OR jjq_no like '%"+search+"%') order by jjq_ID) and (jjq_cepai like '%"+search+"%' OR jjq_no like '%"+search+"%') order by jjq_ID";
+	        	offset + " jjq_ID from jjq_jjq where (jjq_cepai like '%"+search+"%' OR jjq_no like '%"+search+"%' OR jjq_coid like '%"+search+"%') order by jjq_ID) and (jjq_cepai like '%"+search+"%' OR jjq_no like '%"+search+"%' OR jjq_coid like '%"+search+"%') order by jjq_ID";
 	        }else{
 	        	sql = " SELECT TOP " + limit + "  *  FROM jjq_jjq where jjq_ID not in(select top " +
 	    	        	offset + " jjq_ID from jjq_jjq order by jjq_ID) order by jjq_ID";
@@ -83,7 +82,7 @@ public class CarServiceImpl implements CarService {
 	        Statement stat =conn.createStatement();
 	        String sql = "";
 	        if (search != null){
-	        	sql = "select count(*) as count from jjq_jjq where (jjq_cepai like '%"+search+"%' OR jjq_no like '%"+search+"%')";
+	        	sql = "select count(*) as count from jjq_jjq where (jjq_cepai like '%"+search+"%') OR (jjq_no like '%"+search+"%')";
 	        }else{
 	        	sql = "select count(*) as count from jjq_jjq";
 	        }
@@ -144,6 +143,138 @@ public class CarServiceImpl implements CarService {
 	        Statement stat =conn.createStatement();
 	        String sql = "delete from jjq_jjq where jjq_ID = '" + id + "'";
 	        System.out.println(sql);
+	        stat.executeUpdate(sql);
+	        conn.close();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	@Override
+	public List<Company> getCompanyList(String search, String sort, String asc, int offset, int limit) {
+		List<Company> list = new ArrayList<Company>();  
+		try {
+			Properties prop = new Properties();
+			InputStream in = CarServiceImpl.class.getResourceAsStream("/resources/jdbc.properties");
+			prop.load(new InputStreamReader(in, "UTF-8")); 
+			//prop.load(in);   
+            String url = prop.getProperty("access_path").trim();
+            in.close();
+			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
+	        Connection conn = DriverManager.getConnection(url, "", "");
+	        Statement stat =conn.createStatement();
+	        String sql = "";
+	        if (search != null){
+	        	sql = " SELECT TOP " + limit + "  *  FROM jjq_company where co_ID not in(select top " +
+	        	offset + " co_ID from jjq_company where ( co_name like '%"+search+"%') order by co_ID) and  co_name like '%"+search+"%' order by co_ID";
+	        }else{
+	        	sql = " SELECT TOP " + limit + "  *  FROM jjq_company where co_ID not in(select top " +
+	    	        	offset + " co_ID from jjq_company order by co_ID) order by co_ID";
+	        }
+	        ResultSet rs =stat.executeQuery(sql);
+	        while(rs.next()) {
+	        	Company company = new Company();
+	        	company.setId(rs.getInt("co_ID"));
+	        	company.setName(rs.getString("co_name"));
+	        	company.setAddress(rs.getString("co_add"));
+	        	company.setCeo(rs.getString("co_ceo"));
+	        	company.setTel(rs.getString("co_tel"));
+	        	company.setCode(rs.getString("co_code"));
+	        	company.setMemo(rs.getString("co_memo"));
+	        	list.add(company);
+            }
+	        conn.close();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public int getCompanyTotalCount(String search) {
+		int totalCount = 0;
+		try {
+			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
+			Properties prop = new Properties();
+			InputStream in = CarServiceImpl.class.getResourceAsStream("/resources/jdbc.properties");
+			prop.load(new InputStreamReader(in, "UTF-8")); 
+            String url = prop.getProperty("access_path").trim();
+            in.close();
+	        Connection conn = DriverManager.getConnection(url, "", "");
+	        
+	        Statement stat =conn.createStatement();
+	        String sql = "";
+	        if (search != null){
+	        	sql = "select count(*) as count from jjq_company where (co_name like '%"+search+"%')";
+	        }else{
+	        	sql = "select count(*) as count from jjq_company";
+	        }
+	        
+	        ResultSet rs =stat.executeQuery(sql);
+	        rs.next();
+	        totalCount = rs.getInt("count");
+	        conn.close();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return totalCount;
+	}
+
+	@Override
+	public boolean updateCompany(String param, String id, String value) {
+		try {
+			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
+			Properties prop = new Properties();
+			InputStream in = CarServiceImpl.class.getResourceAsStream("/resources/jdbc.properties");
+			prop.load(new InputStreamReader(in, "UTF-8")); 
+            String url = prop.getProperty("access_path").trim();
+            in.close();
+	        Connection conn = DriverManager.getConnection(url, "", "");
+	        
+	        Statement stat =conn.createStatement();
+	        String sql = "update jjq_company set " + param + " = '" + value + "' where co_ID = '" + id + "'";
+	        stat.execute(sql);
+	        conn.close();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	@Override
+	public boolean deleteCompany(String id) {
+		try {
+			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
+			Properties prop = new Properties();
+			InputStream in = CarServiceImpl.class.getResourceAsStream("/resources/jdbc.properties");
+			prop.load(new InputStreamReader(in, "UTF-8")); 
+            String url = prop.getProperty("access_path").trim();
+            in.close();
+	        Connection conn = DriverManager.getConnection(url, "", "");
+	        
+	        Statement stat =conn.createStatement();
+	        String sql = "delete from jjq_company where co_ID = '" + id + "'";
 	        stat.executeUpdate(sql);
 	        conn.close();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {

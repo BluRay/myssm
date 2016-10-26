@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.byd.myssm.dto.Result;
 import com.byd.myssm.entity.Car;
+import com.byd.myssm.entity.Company;
 import com.byd.myssm.service.CarService;
 
 @Controller
@@ -30,9 +31,16 @@ public class CarController {
 		return "car/list";
 	}
 	
+	@RequestMapping(value = "/companyList", method = RequestMethod.GET)
+	private String companyList(Model model) {
+		logger.info("---->CarController companyList");
+		return "car/companyList";
+	}
+	
 	@RequestMapping(value = "/getCarList", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
 	@ResponseBody
 	private String getCarList(@Param("search") String search,@Param("sort") String sort,@Param("order") String order,@Param("offset") int offset,@Param("limit") int limit) throws IOException{				
+		if (search!= null) search = new String(search.getBytes("ISO-8859-1"), "UTF-8");
 		logger.info("---->CarController::getCarList sort = " + sort + ";order = " + order + ";offset = " + offset + ";limit = " + limit);
 		List<Car> list = new ArrayList<Car>();
 		list = carService.getList(search,sort,order,offset,limit);
@@ -53,6 +61,32 @@ public class CarController {
 	@ResponseBody
 	private String deleteCar(@Param("id") String id){
 		carService.deleteCar(id);
+		return "{\"success\":true}";
+	}
+	
+	@RequestMapping(value = "/getCompanyList", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	private String getCompanyList(@Param("search") String search,@Param("sort") String sort,@Param("order") String order,@Param("offset") int offset,@Param("limit") int limit) throws IOException{				
+		if (search!= null) search = new String(search.getBytes("ISO-8859-1"), "UTF-8");
+		logger.info("---->CarController::getCompanyList sort = " + sort + ";order = " + order + ";offset = " + offset + ";limit = " + limit);
+		List<Company> list = new ArrayList<Company>();
+		list = carService.getCompanyList(search,sort,order,offset,limit);
+		int total = carService.getCompanyTotalCount(search);
+		return new Result<List<Company>>(true,list,total).toJsonString();
+	}
+	
+	@RequestMapping(value = "/updateCompany", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	private String updateCompany(@Param("param") String param, @Param("id") String id, @Param("value") String value) throws IOException{
+		value = new String(value.getBytes("ISO-8859-1"), "UTF-8");
+		carService.updateCompany(param, id, value);	
+		return "{\"success\":true}";
+	}
+	
+	@RequestMapping(value = "/deleteCompany", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	private String deleteCompany(@Param("id") String id){
+		carService.deleteCompany(id);
 		return "{\"success\":true}";
 	}
 
