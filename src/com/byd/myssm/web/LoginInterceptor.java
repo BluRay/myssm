@@ -3,6 +3,8 @@ package com.byd.myssm.web;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
@@ -37,6 +39,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if (request.getSession().getAttribute("user") != null) {
 			return true;
 		}
+
+		String url = request.getRequestURI();	//获取上个页面的url  
+		HttpSession session= request.getSession();
+		session.setAttribute("redirectUrl", url);	//把url放到session
+		System.out.println("----> url = " + url);
 
 		// 最后的情况就是进入登录页面
 		response.sendRedirect("/myssm/login/login");

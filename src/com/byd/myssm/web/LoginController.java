@@ -46,7 +46,14 @@ public class LoginController {
 		if("admin".equals(username)){
 			session.setAttribute("user", username);
 			//return "redirect:/index";
-			return "redirect:/jjq";
+			//return "redirect:/jjq";
+			String url = (String) session.getAttribute("redirectUrl");
+			logger.info("---->loginController url = " + url);
+			if(url == null){
+				return "redirect:/jjq";
+			}else{
+				return "redirect:" + url.replaceAll("/myssm", "");
+			}
 		}else{
 			session.setAttribute("user", null);
 			session.setAttribute("info", username + "登陆失败！");
