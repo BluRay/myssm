@@ -40,7 +40,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		}
 
-		String url = request.getRequestURI();	//获取上个页面的url  
+		String url = request.getRequestURI();		//获取上个页面的url  
 		HttpSession session= request.getSession();
 		session.setAttribute("redirectUrl", url);	//把url放到session
 		System.out.println("----> url = " + url);
