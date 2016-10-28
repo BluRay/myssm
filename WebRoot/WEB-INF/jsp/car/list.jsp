@@ -20,7 +20,7 @@ request.setAttribute("basePath", basePath);
 var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"},{value:"2",text:"销售部2"},{value:"3",text:"行政部"}];
 </script>
 </head>
-<body>
+<body style="font-family: 'Microsoft YaHei';">
 <div class="container" style="height:300px">
     <h1></h1>
     <div id="toolbar">

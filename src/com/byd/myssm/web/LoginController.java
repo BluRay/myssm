@@ -48,6 +48,7 @@ public class LoginController {
 			//return "redirect:/index";
 			//return "redirect:/jjq";
 			String url = (String) session.getAttribute("redirectUrl");
+			session.setAttribute("redirectUrl", null);		//跳转地址一次后失效
 			logger.info("---->loginController url = " + url);
 			if(url == null){
 				return "redirect:/jjq";

@@ -19,7 +19,7 @@ request.setAttribute("basePath", basePath);
 <script type="text/javascript">
 </script>
 </head>
-<body>
+<body style="font-family: 'Microsoft YaHei';">
 <div class="container" style="height:300px">
     <h1></h1>
     <div id="toolbar">
