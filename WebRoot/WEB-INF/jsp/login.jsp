@@ -22,7 +22,7 @@
 </head>
 <body>
 	<div class="page-header">
-		<center><h2 style="align:center" id="examples">长沙市出租车设施中心</h2></center>
+		<center><h2 style="align:center" id="examples">MYSSM SYSTEM</h2></center>
 	</div>
 	<div id="main">
 		<div id="login" data-toggle="login"></div>
