@@ -22,8 +22,8 @@ public class LoginController {
 		logger.info("---->loginController login");
 		if (request.getSession().getAttribute("user") != null) {
 			logger.info("---->LoginInterceptor 已登陆 user = " + request.getSession().getAttribute("user"));
-			//return "index";
-			return "redirect:/jjq";
+			return "redirect:/index";
+			//return "redirect:/jjq";
 		} else {
 			return "login";
 		}
@@ -51,7 +51,8 @@ public class LoginController {
 			session.setAttribute("redirectUrl", null);		//跳转地址一次后失效
 			logger.info("---->loginController url = " + url);
 			if(url == null){
-				return "redirect:/jjq";
+				//return "redirect:/jjq";
+				return "redirect:/index";
 			}else{
 				return "redirect:" + url.replaceAll("/myssm", "");
 			}
