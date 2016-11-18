@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Matrix Admin</title>
+<title>Matrix Infos</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
@@ -11,13 +11,13 @@
 <link rel="stylesheet" href="bootstrap/css/matrix-media.css" />
 <link href="bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="bootstrap/css/jquery.gritter.css" />
-<link href='bootstrap/css/fonts.googleapis.com.css' rel='stylesheet' type='text/css'>
+<link rel="shortcut icon" href="img/bydlogo.png" />
 </head>
 <body>
 
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.html">Matrix Admin</a></h1>
+  <h1>Infos</h1>
 </div>
 <!--close-Header-part--> 
 
