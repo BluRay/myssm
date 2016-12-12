@@ -16,28 +16,6 @@ request.setAttribute("basePath", basePath);
 <link rel="stylesheet" href="../css/bootstrap-editable.css">
 <link rel="stylesheet" href="../css/index.css">
 <title>Book list</title>
-<script type="text/javascript">
-$(document).ready(function () {
-	$("#ajaxTest").click(function () {
-		/**
-		$.ajax({
-            url: "/myssm/book/updateBook",
-            dataType : "json",
-            type: "get",
-            data: {
-            	"bookId":1000,
-            	"name":"ddd",
-            	"price":"88.88"
-            },
-            success:function(response){
-            	alert(response.message);
-            }
-		});
-		**/
-		initTable();
-    });
-});
-</script>
 </head>
 <body>
 <div class="container" style="height:300px">
@@ -55,15 +33,16 @@ $(document).ready(function () {
            data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-show-pagination-switch="true"
            data-pagination="true" data-id-field="id" data-page-list="[10, 25, 50, 100, ALL]"
            data-show-footer="false" data-side-pagination="server"
-           data-url="/myssm/book/getBooKList" data-response-handler="responseHandler">
+           data-response-handler="responseHandler">
     </table>
 </div>
 <script>
     var $table = $('#table'),$remove = $('#remove'),selections = [];
-
+    var data_url = "/myssm/book/getBooKList"
     function initTable() {
         $table.bootstrapTable({
-            height: getHeight(),
+        	url:data_url,
+        	height: getHeight(),
             columns: [
             [
                 {
@@ -244,6 +223,10 @@ $(document).ready(function () {
             };
 
         eachSeries(scripts, getScript, initTable);
+        
+        $("#ajaxTest").click(function () {
+        	$table.bootstrapTable('refresh', {url: '/myssm/book/getBooKList?Search=111'});
+        });
     });
 
     function getScript(url, callback) {
