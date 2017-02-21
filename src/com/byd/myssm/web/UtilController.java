@@ -18,7 +18,8 @@ public class UtilController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	private String login(HttpServletRequest request, HttpServletResponse response){
-		return "index";
+		//return "index";
+		return "redirect:/index";
 	}
 	
 	@RequestMapping(value = "/jjq", method = RequestMethod.GET)
