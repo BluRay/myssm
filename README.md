@@ -17,6 +17,7 @@ TODO:
   #EXCEL数据批量导入导出
   #定时任务
   #微信开发
+  #国际化
   +登录后跳转到登录前页面
   +[bootstrap模板]Metronic 首页模板 For: taxi-center
   +长沙出租车设施中心数据查询导出功能
