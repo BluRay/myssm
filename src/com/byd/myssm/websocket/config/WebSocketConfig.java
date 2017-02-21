@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 @EnableWebMvc
 @EnableWebSocket
 public class WebSocketConfig extends WebMvcConfigurerAdapter implements WebSocketConfigurer {
-
+	//TODO WebSocket消息通知功能
     public WebSocketConfig() {
     }
 

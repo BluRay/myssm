@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UtilController {
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	private String index(HttpServletRequest request, HttpServletResponse response){
+		return "index";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	private String login(HttpServletRequest request, HttpServletResponse response){
 		return "index";
 	}
