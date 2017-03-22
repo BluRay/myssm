@@ -51,7 +51,8 @@ public class CarController {
 	@RequestMapping(value = "/updateCar", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
 	@ResponseBody
 	private String updateCar(@Param("param") String param, @Param("id") String id, @Param("value") String value) throws IOException{
-		value = new String(value.getBytes("ISO-8859-1"), "UTF-8");
+		//logger.info("---->value = " + value);
+		//value = new String(value.getBytes("ISO-8859-1"), "UTF-8");
 		carService.updateCar(param, id, value);	
 		return "{\"success\":true}";
 	}

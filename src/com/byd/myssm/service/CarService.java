@@ -29,4 +29,6 @@ public interface CarService {
 	boolean updateCompany(String param,String id,String value);
 	
 	boolean deleteCompany(String id);
+	
+	boolean dologin(String username,String password);
 }

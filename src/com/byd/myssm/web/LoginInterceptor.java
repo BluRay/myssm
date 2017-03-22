@@ -43,7 +43,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		String url = request.getRequestURI();		//获取上个页面的url  
 		HttpSession session= request.getSession();
 		session.setAttribute("redirectUrl", url);	//把url放到session
-		System.out.println("----> url = " + url);
 
 		// 最后的情况就是进入登录页面
 		response.sendRedirect("/myssm/login/login");

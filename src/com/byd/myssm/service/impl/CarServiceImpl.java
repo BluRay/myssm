@@ -289,4 +289,10 @@ public class CarServiceImpl implements CarService {
 		return true;
 	}
 
+	@Override
+	public boolean dologin(String username, String password) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
 }
