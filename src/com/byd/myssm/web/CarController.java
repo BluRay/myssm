@@ -36,6 +36,11 @@ public class CarController {
 		return "car/companyList";
 	}
 	
+	@RequestMapping(value = "/modList", method = RequestMethod.GET)
+	private String modList(Model model) {
+		return "car/modList";
+	}
+	
 	@RequestMapping(value = "/getCarList", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
 	@ResponseBody
 	private String getCarList(@Param("search") String search,@Param("sort") String sort,@Param("order") String order,@Param("offset") int offset,@Param("limit") int limit) throws IOException{				
@@ -87,6 +92,15 @@ public class CarController {
 	@ResponseBody
 	private String deleteCompany(@Param("id") String id){
 		carService.deleteCompany(id);
+		return "{\"success\":true}";
+	}
+	
+	@RequestMapping(value = "/getModList", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	private String getModList(@Param("search") String search,@Param("moder") String moder,@Param("date") String date,@Param("sort") String sort,@Param("order") String order,@Param("offset") int offset,@Param("limit") int limit) throws IOException{				
+		
+		
+		
 		return "{\"success\":true}";
 	}
 
