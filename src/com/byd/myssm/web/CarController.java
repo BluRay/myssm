@@ -26,13 +26,11 @@ public class CarController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	private String list(Model model) {
-		logger.info("---->CarController list");
 		return "car/list";
 	}
 	
 	@RequestMapping(value = "/companyList", method = RequestMethod.GET)
 	private String companyList(Model model) {
-		logger.info("---->CarController companyList");
 		return "car/companyList";
 	}
 	
@@ -49,7 +47,6 @@ public class CarController {
 		List<Car> list = new ArrayList<Car>();
 		list = carService.getList(search,sort,order,offset,limit);
 		int total = carService.getTotalCount(search);
-		logger.info("---->total = " + total);
 		return new Result<List<Car>>(true,list,total).toJsonString();
 	}
 	
