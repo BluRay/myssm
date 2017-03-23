@@ -15,6 +15,7 @@ import java.util.Properties;
 import org.springframework.stereotype.Service;
 import com.byd.myssm.entity.Car;
 import com.byd.myssm.entity.Company;
+import com.byd.myssm.entity.Modinfo;
 import com.byd.myssm.service.CarService;
 @Service
 public class CarServiceImpl implements CarService {
@@ -295,4 +296,38 @@ public class CarServiceImpl implements CarService {
 		return true;
 	}
 
+	@Override
+	public List<Modinfo> getModList(String search, String moder, String date) {
+		List<Modinfo> list = new ArrayList<Modinfo>();
+		
+		try{
+			Properties prop = new Properties();
+			InputStream in = CarServiceImpl.class.getResourceAsStream("/resources/jdbc.properties");
+			prop.load(new InputStreamReader(in, "UTF-8")); 
+			//prop.load(in);   
+	        String url = prop.getProperty("access_path").trim();
+	        in.close();
+			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
+	        Connection conn = DriverManager.getConnection(url, "", "");
+	        Statement stat =conn.createStatement();
+	        String sql = "SELECT * FROM jjq_mod WHERE mod_date like '"+date+"' AND mod_moder like '"+moder+"'";
+	        ResultSet rs =stat.executeQuery(sql);
+	        while(rs.next()) {
+	        	Modinfo modinfo = new Modinfo();
+	        	
+	        	
+	        	list.add(modinfo);
+	        }
+	        
+		}catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		return list;
+	}
+	
 }
+

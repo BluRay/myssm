@@ -3,6 +3,7 @@ package com.byd.myssm.service;
 import java.util.List;
 import com.byd.myssm.entity.Car;
 import com.byd.myssm.entity.Company;
+import com.byd.myssm.entity.Modinfo;
 
 public interface CarService {
 	
@@ -31,4 +32,6 @@ public interface CarService {
 	boolean deleteCompany(String id);
 	
 	boolean dologin(String username,String password);
+	
+	List<Modinfo> getModList(String search,String moder,String date);
 }

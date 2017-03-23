@@ -97,7 +97,7 @@ public class CarController {
 	
 	@RequestMapping(value = "/getModList", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
 	@ResponseBody
-	private String getModList(@Param("search") String search,@Param("moder") String moder,@Param("date") String date,@Param("sort") String sort,@Param("order") String order,@Param("offset") int offset,@Param("limit") int limit) throws IOException{				
+	private String getModList(@Param("search") String search,@Param("moder") String moder,@Param("date") String date,@Param("order") String order) throws IOException{				
 		
 		
 		
