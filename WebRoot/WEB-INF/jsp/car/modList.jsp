@@ -32,7 +32,7 @@ request.setAttribute("basePath", basePath);
            data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-show-pagination-switch="true"
            data-pagination="true" data-id-field="id" data-page-list="[50, 100, 200, 500, ALL]"
            data-show-footer="false" data-side-pagination="server"
-           data-url="/myssm/car/getCompanyList" data-response-handler="responseHandler">
+           data-url="/myssm/car/getModList" data-response-handler="responseHandler">
     </table>
 </div>
 <script>

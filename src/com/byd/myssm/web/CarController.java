@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.byd.myssm.dto.Result;
 import com.byd.myssm.entity.Car;
 import com.byd.myssm.entity.Company;
+import com.byd.myssm.entity.Modinfo;
 import com.byd.myssm.service.CarService;
 
 @Controller
@@ -95,10 +96,10 @@ public class CarController {
 	@RequestMapping(value = "/getModList", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
 	@ResponseBody
 	private String getModList(@Param("search") String search,@Param("moder") String moder,@Param("date") String date,@Param("order") String order) throws IOException{				
+		List<Modinfo> list = new ArrayList<Modinfo>();
 		
-		
-		
-		return "{\"success\":true}";
+		return new Result<List<Modinfo>>(true,list).toJsonString();
+		//return "{\"success\":true}";
 	}
 
 }
