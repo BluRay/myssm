@@ -44,7 +44,6 @@ public class CarController {
 	@ResponseBody
 	private String getCarList(@Param("search") String search,@Param("sort") String sort,@Param("order") String order,@Param("offset") int offset,@Param("limit") int limit) throws IOException{				
 		if (search!= null) search = new String(search.getBytes("ISO-8859-1"), "UTF-8");
-		logger.info("---->CarController::getCarList sort = " + sort + ";order = " + order + ";offset = " + offset + ";limit = " + limit);
 		List<Car> list = new ArrayList<Car>();
 		list = carService.getList(search,sort,order,offset,limit);
 		int total = carService.getTotalCount(search);
@@ -100,6 +99,7 @@ public class CarController {
 		
 		return new Result<List<Modinfo>>(true,list).toJsonString();
 		//return "{\"success\":true}";
+		//默认查询上一月维修数据
 	}
 
 }

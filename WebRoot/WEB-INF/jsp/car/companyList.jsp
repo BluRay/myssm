@@ -44,10 +44,10 @@ request.setAttribute("basePath", basePath);
             columns: [
             [
                 {
-                	field: 'id',title: '公司编号',width:'60px',align: 'center',valign: 'middle',
+                	field: 'id',title: '公司编号',width:'50px',align: 'center',valign: 'middle',
                     sortable: true,footerFormatter: totalTextFormatter
                 },{
-                    field: 'name',title: '公司名称',width:'120px',sortable: true,
+                    field: 'name',title: '公司名称',width:'190px',sortable: true,
                     editable: {
                         type: 'text',title: '公司名称',
                         validate: function (value) {
@@ -63,7 +63,7 @@ request.setAttribute("basePath", basePath);
                     },
                     footerFormatter: totalNameFormatter,align: 'center'
                 }, {
-                    field: 'address',title: '公司地址',width:'220px',sortable: true,align: 'center',
+                    field: 'address',title: '公司地址',width:'120px',sortable: true,align: 'center',
                     editable: {
                         type: 'text',title: '公司地址',emptytext:'未填写地址',
                         validate: function (value) {

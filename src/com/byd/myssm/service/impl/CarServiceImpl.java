@@ -313,8 +313,8 @@ public class CarServiceImpl implements CarService {
 	        String sql = "SELECT * FROM jjq_mod WHERE mod_date like '"+date+"' AND mod_moder like '"+moder+"'";
 	        ResultSet rs =stat.executeQuery(sql);
 	        while(rs.next()) {
-	        	Modinfo modinfo = new Modinfo();
-	        	
+	        	Modinfo modinfo = new Modinfo();	        	
+	        	modinfo.setId(rs.getInt("ID"));
 	        	
 	        	list.add(modinfo);
 	        }
