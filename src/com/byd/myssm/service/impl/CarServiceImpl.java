@@ -310,11 +310,13 @@ public class CarServiceImpl implements CarService {
 			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
 	        Connection conn = DriverManager.getConnection(url, "", "");
 	        Statement stat =conn.createStatement();
-	        String sql = "SELECT * FROM jjq_mod WHERE mod_date like '"+date+"' AND mod_moder like '"+moder+"'";
+	        String sql = "SELECT top 100 * FROM jjq_mod where mod_date like '%"+date+"%' AND mod_moder like '%孙岭杰%'";
+	        System.out.println("---->sql = " + sql);
 	        ResultSet rs =stat.executeQuery(sql);
+
 	        while(rs.next()) {
 	        	Modinfo modinfo = new Modinfo();	        	
-	        	modinfo.setId(rs.getInt("ID"));
+	        	modinfo.setId(rs.getInt("mod_ID"));
 	        	
 	        	list.add(modinfo);
 	        }

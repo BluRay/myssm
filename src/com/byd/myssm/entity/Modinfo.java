@@ -64,5 +64,10 @@ public class Modinfo {
 	public void setS_price(String s_price) {
 		this.s_price = s_price;
 	}
+	
+	@Override
+	public String toString() {
+		return "{\"id\":" + id + ", \"moder_name\":\"" + moder_name + "\"}";
+	}
 
 }
