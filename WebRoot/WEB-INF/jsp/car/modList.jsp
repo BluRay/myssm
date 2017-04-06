@@ -26,58 +26,35 @@ request.setAttribute("basePath", basePath);
         <button id="remove" class="btn btn-success" disabled>
             <i class="glyphicon glyphicon-ok"></i> 增加公司信息
         </button>
+        <select id="moder"><option value="孙岭杰">孙岭杰</option><option value="孙岭杰">孙岭杰</option></select>
     </div>
     <table id="table" data-toolbar="#toolbar" data-search="true" data-show-refresh="true"
            data-show-toggle="true" data-show-columns="true" data-show-export="true" data-detail-view="false"
            data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-show-pagination-switch="true"
            data-pagination="true" data-id-field="id" data-page-list="[50, 100, 200, 500, ALL]"
            data-show-footer="false" data-side-pagination="server"
-           data-url="/myssm/car/getModList" data-response-handler="responseHandler">
+           data-response-handler="responseHandler">
     </table>
 </div>
 <script>
+	var data_url = "/myssm/car/getModList?moder=" + $("#moder").val();
     var $table = $('#table'),$remove = $('#remove'),selections = [];
 
     function initTable() {
         $table.bootstrapTable({
-            height: getHeight(),showFooter:true,
+        	url:data_url,
+        	height: getHeight(),showFooter:true,
             columns: [
             [
                 {
-                	field: 'id',title: '公司编号',width:'60px',align: 'center',valign: 'middle',
+                	field: 'id',title: '编号',width:'60px',align: 'center',valign: 'middle',
                     sortable: true,footerFormatter: totalTextFormatter
                 },{
-                    field: 'name',title: '公司名称',width:'120px',sortable: true,
-                    editable: {
-                        type: 'text',title: '公司名称',
-                        validate: function (value) {
-                            value = $.trim(value);
-                            if (!value) {
-                                return 'This field is required';
-                            }
-                            var data = $table.bootstrapTable('getData'),
-                                index = $(this).parents('tr').data('index');
-                            ajaxEdit("co_name",data[index].id,value);
-                            return '';
-                        }
-                    }
+                    field: 'moder_name',title: '维修人员',width:'80px',sortable: true,align: 'center',
+                    valign: 'middle',sortable: true,footerFormatter: totalTextFormatter
                 }, {
-                    field: 'address',title: '公司地址',width:'220px',sortable: true,align: 'center',
-                    editable: {
-                        type: 'text',title: '公司地址',emptytext:'未填写地址',
-                        validate: function (value) {
-                            value = $.trim(value);
-                            if (!value) {
-                                return 'This field is required';
-                            }
-                            var data = $table.bootstrapTable('getData'),
-                                index = $(this).parents('tr').data('index');
-                            console.log("---->data : id = " + data[index].id + " newvalue = " +value);
-                            ajaxEdit("co_add",data[index].id,value);
-                            return '';
-                        }
-                    },
-                    footerFormatter: totalPriceFormatter
+                    field: 'jjq_no',title: '计价器号',width:'100px',sortable: true,align: 'center',
+                    valign: 'middle',sortable: true,footerFormatter: totalTextFormatter
                 },{
                     field: 'ceo',title: '负责人',width:'100px',
                     editable:{

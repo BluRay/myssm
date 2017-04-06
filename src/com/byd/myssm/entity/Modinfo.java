@@ -67,7 +67,9 @@ public class Modinfo {
 	
 	@Override
 	public String toString() {
-		return "{\"id\":" + id + ", \"moder_name\":\"" + moder_name + "\"}";
+		return "{\"id\":" + id + ", \"moder_name\":\"" + moder_name + "\", \"company\":\"" + company 
+				+ "\", \"jjq_no\":\"" + jjq_no + "\", \"moder_date\":\"" + moder_date + "\", \"mod_info\":\"" + mod_info 
+				+ "\", \"price\":\"" + price + "\", \"s_price\":\"" + s_price + "\"}";
 	}
 
 }

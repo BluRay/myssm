@@ -317,7 +317,8 @@ public class CarServiceImpl implements CarService {
 	        while(rs.next()) {
 	        	Modinfo modinfo = new Modinfo();	        	
 	        	modinfo.setId(rs.getInt("mod_ID"));
-	        	
+	        	modinfo.setModer_name(rs.getString("mod_moder"));
+	        	modinfo.setJjq_no(rs.getString("mod_bianhao"));
 	        	list.add(modinfo);
 	        }
 	        
