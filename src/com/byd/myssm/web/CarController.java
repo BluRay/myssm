@@ -96,7 +96,7 @@ public class CarController {
 	@ResponseBody
 	private String getModList(@Param("search") String search,@Param("moder") String moder,@Param("date") String date,@Param("order") String order) throws IOException{				
 		List<Modinfo> list = new ArrayList<Modinfo>();
-		moder = "孙岭杰";
+		//moder = "孙岭杰";
 		date = "2016-10";
 		list = carService.getModList(search, moder, date);
 		return new Result<List<Modinfo>>(true,list).toJsonString();

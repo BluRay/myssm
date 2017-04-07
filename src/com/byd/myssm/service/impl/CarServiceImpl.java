@@ -310,8 +310,9 @@ public class CarServiceImpl implements CarService {
 			Class.forName("com.hxtt.sql.access.AccessDriver").newInstance();
 	        Connection conn = DriverManager.getConnection(url, "", "");
 	        Statement stat =conn.createStatement();
-	        String sql = "SELECT top 100 * FROM jjq_mod where mod_date like '%"+date+"%' AND mod_moder like '%孙岭杰%'";
-	        System.out.println("---->sql = " + sql);
+	        if (search==null)search=date;
+	        String sql = "SELECT top 100 * FROM jjq_mod where mod_date like '%"+search+"%' AND mod_moder like '%"+moder+"%'";
+	        System.out.println("---->getModList sql = " + sql);
 	        ResultSet rs =stat.executeQuery(sql);
 
 	        while(rs.next()) {
@@ -319,6 +320,10 @@ public class CarServiceImpl implements CarService {
 	        	modinfo.setId(rs.getInt("mod_ID"));
 	        	modinfo.setModer_name(rs.getString("mod_moder"));
 	        	modinfo.setJjq_no(rs.getString("mod_bianhao"));
+	        	modinfo.setModer_date(rs.getString("mod_date"));
+	        	modinfo.setMod_info(rs.getString("mod_mingxi"));
+	        	modinfo.setPrice(rs.getString("mod_money"));
+	        	modinfo.setS_price(rs.getString("mod_smoney"));
 	        	list.add(modinfo);
 	        }
 	        

@@ -21,10 +21,10 @@
     };
 
     $.extend($.fn.bootstrapTable.defaults, {
-        showExport: false,
+        showExport: true,
         exportDataType: 'basic', // basic, all, selected
         // 'json', 'xml', 'png', 'csv', 'txt', 'sql', 'doc', 'excel', 'powerpoint', 'pdf'
-        exportTypes: ['excel'],
+        exportTypes: ['excel','pdf'],
         exportOptions: {}
     });
 

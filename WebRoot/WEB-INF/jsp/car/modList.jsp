@@ -26,7 +26,7 @@ request.setAttribute("basePath", basePath);
         <button id="remove" class="btn btn-success" disabled>
             <i class="glyphicon glyphicon-ok"></i> 增加公司信息
         </button>
-        <select id="moder"><option value="孙岭杰">孙岭杰</option><option value="孙岭杰">孙岭杰</option></select>
+        <select id="moder"><option value="谢鹏">谢鹏</option><option value="孙岭杰">孙岭杰</option></select>
     </div>
     <table id="table" data-toolbar="#toolbar" data-search="true" data-show-refresh="true"
            data-show-toggle="true" data-show-columns="true" data-show-export="true" data-detail-view="false"
@@ -37,79 +37,36 @@ request.setAttribute("basePath", basePath);
     </table>
 </div>
 <script>
-	var data_url = "/myssm/car/getModList?moder=" + $("#moder").val();
+	var data_url = "/myssm/car/getModList" ;
     var $table = $('#table'),$remove = $('#remove'),selections = [];
 
     function initTable() {
         $table.bootstrapTable({
-        	url:data_url,
+        	url:data_url + "?moder=" + $("#moder").val(),
         	height: getHeight(),showFooter:true,
             columns: [
             [
                 {
                 	field: 'id',title: '编号',width:'60px',align: 'center',valign: 'middle',
-                    sortable: true,footerFormatter: totalTextFormatter
+                    sortable: false,footerFormatter:totalNameFormatter
                 },{
                     field: 'moder_name',title: '维修人员',width:'80px',sortable: true,align: 'center',
-                    valign: 'middle',sortable: true,footerFormatter: totalTextFormatter
+                    valign: 'middle',sortable: false
                 }, {
-                    field: 'jjq_no',title: '计价器号',width:'100px',sortable: true,align: 'center',
-                    valign: 'middle',sortable: true,footerFormatter: totalTextFormatter
+                    field: 'jjq_no',title: '计价器号',width:'80px',sortable: true,align: 'center',
+                    valign: 'middle',sortable: false
                 },{
-                    field: 'ceo',title: '负责人',width:'100px',
-                    editable:{
-                    	emptytext:'未填写负责人',
-                    	validate: function (value) {
-                            value = $.trim(value);
-                            var data = $table.bootstrapTable('getData'),
-                                index = $(this).parents('tr').data('index');
-                            ajaxEdit("co_ceo",data[index].id,value);
-                            return '';
-                        }
-                    },
-                    footerFormatter: totalNameFormatter,align: 'center'
+                    field: 'moder_date',title: '维修日期',width:'100px',sortable: true,align: 'center',
+                    valign: 'middle',sortable: false
                 },{
-                    field: 'tel',title: '联系电话',width:'80px',
-                    editable:{
-                    	emptytext:'未填写负责人',
-                    	validate: function (value) {
-                            value = $.trim(value);
-                            var data = $table.bootstrapTable('getData'),
-                                index = $(this).parents('tr').data('index');
-                            ajaxEdit("co_tel",data[index].id,value);
-                            return '';
-                        }
-                    },
-                    footerFormatter: totalNameFormatter,align: 'center'
+                    field: 'mod_info',title: '维修明细',width:'250px',sortable: true,align: 'center',
+                    valign: 'middle',sortable: false,footerFormatter: totalTextFormatter
                 }, {
-                    field: 'code',title: '公司编号',width:'100px',
-                    editable:{
-                    	emptytext:'未填写编号',
-                    	validate: function (value) {
-                            value = $.trim(value);
-                            var data = $table.bootstrapTable('getData'),
-                                index = $(this).parents('tr').data('index');
-                            ajaxEdit("co_code",data[index].id,value);
-                            return '';
-                        }
-                    },
-                    footerFormatter: totalNameFormatter,align: 'center'
+                    field: 'price',title: '维修金额',width:'60px',sortable: true,align: 'center',
+                    valign: 'middle',sortable: true,footerFormatter: totalPriceFormatter
                 },{
-                    field: 'memo',title: '备注',width:'100px',sortable: true,
-                    editable:{
-                    	emptytext:'未填写备注',
-                    	validate: function (value) {
-                            value = $.trim(value);
-                            var data = $table.bootstrapTable('getData'),
-                                index = $(this).parents('tr').data('index');
-                            ajaxEdit("co_memo",data[index].id,value);
-                            return '';
-                        }
-                    },
-                    footerFormatter: totalNameFormatter,align: 'center'
-                }, {
-                    field: 'operate',title: '操作',width:'40px',align: 'center',
-                    events: operateEvents,formatter: operateFormatter
+                    field: 's_price',title: '维修利润',width:'60px',sortable: true,align: 'center',
+                    valign: 'middle',sortable: true,footerFormatter: totalSPriceFormatter
                 }
             ]
         ]
@@ -195,33 +152,37 @@ request.setAttribute("basePath", basePath);
     };
 
     function totalTextFormatter(data) {
-        return 'Total';
+        return '合计';
     }
 
     function totalNameFormatter(data) {
-        return data.length;
+        return "共 " + data.length + " 条";
     }
 
     function totalPriceFormatter(data) {
         var total = 0;
         $.each(data, function (i, row) {
-            //total += +(row.price.substring(1));
-        	total++;
+            total += Number(row.price);
         });
-        return '$' + total;
+        return '￥' + total;
     }
 
+    function totalSPriceFormatter(data) {
+        var total = 0;
+        $.each(data, function (i, row) {
+            total += Number(row.s_price);
+        });
+        return '￥' + total;
+    }
+    
     function getHeight() {
         return $(window).height() - $('h1').outerHeight(true);
     }
 
     $(function () {
         var scripts = [
-                location.search.substring(1) || '../js/bootstrap-table.js',
-                '../js/bootstrap-table-export.js',
-                '../js/tableExport.js',
-                '../js/bootstrap-table-editable.js',
-                '../js/bootstrap-editable.js'
+                location.search.substring(1) || '../js/bootstrap-table.js','../js/bootstrap-table-export.js','../js/tableExport.js',
+                '../js/bootstrap-table-editable.js','../js/bootstrap-editable.js'
             ],
             eachSeries = function (arr, iterator, callback) {
                 callback = callback || function () {};
@@ -250,6 +211,12 @@ request.setAttribute("basePath", basePath);
             };
 
         eachSeries(scripts, getScript, initTable);
+        
+        $("#moder").change(function() {
+        	data_url = "/myssm/car/getModList?moder=" + $("#moder").val();
+        	$table.bootstrapTable('refresh', {url: data_url});
+        });
+        		
     });
 
     function getScript(url, callback) {
@@ -275,39 +242,6 @@ request.setAttribute("basePath", basePath);
 
         // We handle everything using the script element injection
         return undefined;
-    }
-    
-    function ajaxEdit(param,id,value){
-    	$.ajax({
-            url: "/myssm/car/updateCompany",
-            dataType : "json",
-            type: "get",
-            data: {
-            	"param":param,
-            	"id":id,
-            	"value":value
-            },
-            success:function(response){
-            }
-		});
-    }
-    
-    function ajaxDel(id){
-    	//$table.bootstrapTable('refresh');
-    	if(confirm("确定删除数据吗？删除后不可恢复！")){
-    		$.ajax({
-                url: "/myssm/car/deleteCompany",
-                dataType : "json",
-                type: "get",
-                data: {
-                	"id":id
-                },
-                success:function(response){
-                	//alert(response.message);
-                	$table.bootstrapTable('refresh');
-                }
-    		});
-    	}
     }
     
 </script>
