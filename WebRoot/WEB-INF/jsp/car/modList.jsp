@@ -217,7 +217,6 @@ request.setAttribute("basePath", basePath);
         eachSeries(scripts, getScript, initTable);
         
         $("#moder").change(function() {
-        	data_url = "/myssm/car/getModList?moder=" + $("#moder").val();
         	$table.bootstrapTable('refresh', {url: data_url});
         });
         		
