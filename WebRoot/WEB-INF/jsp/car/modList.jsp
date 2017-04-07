@@ -37,13 +37,17 @@ request.setAttribute("basePath", basePath);
     </table>
 </div>
 <script>
-	var data_url = "/myssm/car/getModList" ;
+	var data_url = "/myssm/car/getModList";
     var $table = $('#table'),$remove = $('#remove'),selections = [];
 
     function initTable() {
         $table.bootstrapTable({
-        	url:data_url + "?moder=" + $("#moder").val(),
+        	url:data_url,
         	height: getHeight(),showFooter:true,
+        	queryParams:function(params) {
+        		params["moder"] = $("#moder").val(); 
+            	return params;
+        	},
             columns: [
             [
                 {
