@@ -98,7 +98,7 @@
     Login.getTemplate = function (options) {
         var locale = Login.locale[options.lang], templates = {
             normal: [
-                '<div class="bs-login">',
+                '<div class="bs-login" style="width:350px">',
                 '<div class="bs-signin">',
                 '<h1>' + locale.title + options.title + '</h1>',
                 '<form action="' + options.action + '" method="POST">',

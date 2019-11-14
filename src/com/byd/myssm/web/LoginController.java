@@ -60,7 +60,8 @@ public class LoginController {
 				//return "redirect:/index";
 				return "redirect:/jjq";
 			}else{
-				return "redirect:" + url.replaceAll("/myssm", "");
+				return "redirect:/jjq";
+				//return "redirect:" + url.replaceAll("/myssm", "");
 			}
 		}else{
 			session.setAttribute("user", null);
