@@ -4,6 +4,7 @@ import java.util.List;
 import com.byd.myssm.entity.Car;
 import com.byd.myssm.entity.Company;
 import com.byd.myssm.entity.Modinfo;
+import com.byd.myssm.entity.Worker;
 
 public interface CarService {
 	
@@ -34,4 +35,6 @@ public interface CarService {
 	boolean dologin(String username,String password);
 	
 	List<Modinfo> getModList(String search,String moder,String date);
+	
+	public List<Worker> getWorkerList(String search,String sort, String asc, int offset, int limit);
 }

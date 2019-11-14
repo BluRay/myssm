@@ -16,6 +16,7 @@ import com.byd.myssm.dto.Result;
 import com.byd.myssm.entity.Car;
 import com.byd.myssm.entity.Company;
 import com.byd.myssm.entity.Modinfo;
+import com.byd.myssm.entity.Worker;
 import com.byd.myssm.service.CarService;
 
 @Controller
@@ -45,6 +46,11 @@ public class CarController {
 		return "car/modList";
 	}
 	
+	@RequestMapping(value = "/worker", method = RequestMethod.GET)
+	private String worker(Model model) {
+		return "car/worker";
+	}
+	
 	@RequestMapping(value = "/getCarList", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
 	@ResponseBody
 	private String getCarList(@Param("search") String search,@Param("sort") String sort,@Param("order") String order,@Param("offset") int offset,@Param("limit") int limit) throws IOException{				
@@ -53,6 +59,16 @@ public class CarController {
 		list = carService.getList(search,sort,order,offset,limit);
 		int total = carService.getTotalCount(search);
 		return new Result<List<Car>>(true,list,total).toJsonString();
+	}
+	
+	@RequestMapping(value = "/getWorkerList", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	private String getWorkerList(@Param("search") String search,@Param("sort") String sort,@Param("order") String order,@Param("offset") int offset,@Param("limit") int limit) throws IOException{				
+		if (search!= null) search = new String(search.getBytes("ISO-8859-1"), "UTF-8");
+		List<Worker> list = new ArrayList<Worker>();
+		list = carService.getWorkerList(search, sort, order, offset, limit);
+		int total = 0;
+		return new Result<List<Worker>>(true,list,total).toJsonString();
 	}
 	
 	@RequestMapping(value = "/updateCar", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})

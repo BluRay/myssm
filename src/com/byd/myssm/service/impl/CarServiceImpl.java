@@ -11,14 +11,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.byd.myssm.dao.CarDao;
 import com.byd.myssm.entity.Car;
 import com.byd.myssm.entity.Company;
 import com.byd.myssm.entity.Modinfo;
+import com.byd.myssm.entity.Worker;
 import com.byd.myssm.service.CarService;
 @Service
 public class CarServiceImpl implements CarService {
+	@Autowired
+    private CarDao carDao;
 
 	@Override
 	public List<Car> getList(String search,String sort, String asc, int offset, int limit) {
@@ -334,6 +338,13 @@ public class CarServiceImpl implements CarService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		
+		return list;
+	}
+	
+	@Override
+	public List<Worker> getWorkerList(String search,String sort, String asc, int offset, int limit){
+		List<Worker> list = new ArrayList<Worker>();
+		list = carDao.getWorkerList(sort, sort, offset, limit);
 		return list;
 	}
 	
