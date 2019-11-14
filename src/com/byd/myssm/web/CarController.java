@@ -25,6 +25,11 @@ public class CarController {
 	@Autowired
 	private CarService carService;
 	
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	private String index(Model model) {
+		return "car/index";
+	}
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	private String list(Model model) {
 		return "car/list";
