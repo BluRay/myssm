@@ -11,10 +11,12 @@ request.setAttribute("basePath", basePath);
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/ga.js"></script>
+<script src="../js/layer.js"></script>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/bootstrap-table.css">
 <link rel="stylesheet" href="../css/bootstrap-editable.css">
 <link rel="stylesheet" href="../css/index.css">
+<link rel="stylesheet" href="../css/layer.css">
 <title>Book list</title>
 <script type="text/javascript">
 var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"},{value:"2",text:"销售部2"},{value:"3",text:"行政部"}];
@@ -24,7 +26,7 @@ var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"
 <div class="container" style="height:300px">
     <h1></h1>
     <div id="toolbar">
-        <button id="remove" class="btn btn-success" disabled>
+        <button id="btn_add" class="btn btn-success">
             <i class="glyphicon glyphicon-ok"></i> 增加车辆信息
         </button>
     </div>
@@ -35,6 +37,18 @@ var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"
            data-show-footer="false" data-side-pagination="server"
            data-url="/myssm/car/getCarList" data-response-handler="responseHandler">
     </table>
+    
+    <div id="addLayer" class="box-body" style="display: none; padding: 10px;">
+    	<form action="#">
+    		<table>
+    		<tr>
+    		<td><label class="control-label" style="width: 100px">订单名称：<i class="fa icon-question hide"></i></label></td>
+    		<td><input type="text" name="order_name" style="height: 30px;" class="form-control" placeholder="订单名称" /></td>
+    		</tr>
+    		</table>
+    	</form>
+    </div>
+    
 </div>
 <script>
     var $table = $('#table'),$remove = $('#remove'),selections = [];
@@ -254,6 +268,29 @@ var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"
     }
 
     $(function () {
+    	$("#btn_add").click(function () {
+    		console.log("-->btn_add")
+    		layer.open({
+				type : 1,
+				offset : '50px',
+				skin : 'layui-layer-molv',
+				title : "编辑订单",
+				area : [ '400px', '240px' ],
+				shade : 0,
+				shadeClose : true,
+				content : jQuery("#addLayer"),
+				btn : [ '确定' ,	'取消'],
+				btn1 : function(index) {
+					console.log('btn1')
+				},
+				btn2 : function(index) {
+					console.log('btn2')
+				}
+			});
+    		
+    	})
+    	
+    	
         var scripts = [
                 location.search.substring(1) || '../js/bootstrap-table.js',
                 '../js/bootstrap-table-export.js',
