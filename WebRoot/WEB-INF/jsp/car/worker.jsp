@@ -48,7 +48,7 @@ var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"
                 	field: 'id',title: '员工编号',width:'60px',align: 'center',valign: 'middle',
                     sortable: true,footerFormatter: totalTextFormatter
                 },{
-                    field: 'name',title: '员工姓名',width:'120px',sortable: true,
+                    field: 'name',title: '员工姓名',width:'150px',sortable: true,
                     editable: {
                         type: 'text',title: '姓名',
                         validate: function (value) {
@@ -65,50 +65,7 @@ var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"
                     },
                     footerFormatter: totalNameFormatter,align: 'center'
                 }, {
-                    field: 'gongsi',title: '公司',width:'220px',sortable: true,align: 'center',
-                    editable: {
-                        type: 'text',title: '公司',emptytext:'未填写公司',
-                        validate: function (value) {
-                            value = $.trim(value);
-                            if (!value) {
-                                return 'This field is required';
-                            }
-                            var data = $table.bootstrapTable('getData'),
-                                index = $(this).parents('tr').data('index');
-                            console.log("---->data : id = " + data[index].id + " newvalue = " +value);
-                            ajaxEdit("jjq_coid",data[index].id,value);
-                            return '';
-                        }
-                    },
-                    footerFormatter: totalPriceFormatter
-                },{
-                    field: 'jijiaqihao',title: '计价器号',width:'100px',
-                    editable:{
-                    	emptytext:'未填写计价器号',
-                    	validate: function (value) {
-                            value = $.trim(value);
-                            var data = $table.bootstrapTable('getData'),
-                                index = $(this).parents('tr').data('index');
-                            ajaxEdit("jjq_no",data[index].id,value);
-                            return '';
-                        }
-                    },
-                    footerFormatter: totalNameFormatter,align: 'center'
-                },{
-                    field: 'siji',title: '司机编号',width:'80px',
-                    editable:{
-                    	emptytext:'未填写司机',
-                    	validate: function (value) {
-                            value = $.trim(value);
-                            var data = $table.bootstrapTable('getData'),
-                                index = $(this).parents('tr').data('index');
-                            ajaxEdit("jjq_driname",data[index].id,value);
-                            return '';
-                        }
-                    },
-                    footerFormatter: totalNameFormatter,align: 'center'
-                }, {
-                    field: 'dianhua',title: '联系电话',width:'100px',
+                    field: 'tel',title: '联系电话',width:'150px',
                     editable:{
                     	emptytext:'未填写电话',
                     	validate: function (value) {
@@ -121,20 +78,20 @@ var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"
                     },
                     footerFormatter: totalNameFormatter,align: 'center'
                 },{
-                    field: 'anzhuangriqi',title: '起始日期',width:'100px',sortable: true,
+                    field: 'add',title: '联系地址',width:'250px',
                     editable:{
-                    	emptytext:'未填写日期',
+                    	emptytext:'未填写电话',
                     	validate: function (value) {
                             value = $.trim(value);
                             var data = $table.bootstrapTable('getData'),
                                 index = $(this).parents('tr').data('index');
-                            ajaxEdit("jjq_sdate",data[index].id,value);
+                            ajaxEdit("jjq_dritel",data[index].id,value);
                             return '';
                         }
                     },
                     footerFormatter: totalNameFormatter,align: 'center'
                 },{
-                    field: 'beizhu',title: '备注',
+                    field: 'memo',title: '备注',
                     editable:{
                     	emptytext:'未填写备注',
                     	validate: function (value) {
@@ -147,7 +104,7 @@ var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"
                     },
                     footerFormatter: totalNameFormatter,align: 'center'
                 }, {
-                    field: 'operate',title: '操作',width:'40px',align: 'center',
+                    field: 'operate',title: '操作',align: 'center',
                     events: operateEvents,formatter: operateFormatter
                 }
             ]

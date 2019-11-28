@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -296,8 +298,19 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public boolean dologin(String username, String password) {
-		// TODO Auto-generated method stub
-		return true;
+		List<Map<String,Object>> users = new ArrayList<Map<String,Object>>();
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("username", username);
+		users = carDao.getManageInfo(params);
+		if(users.size() > 0) {
+			if(password.equals(users.get(0).get("password").toString())) {
+				return true;
+			}else {
+				return false;
+			}
+		}else {
+			return false;
+		}
 	}
 
 	@Override

@@ -6,12 +6,11 @@ public class Worker {
 	private String tel;
 	private String add;
 	private String memo;
-	private String workid;
 	@Override
 	public String toString() {
 		return "{\"id\":" + id + ", \"name\":\"" +
 				name + "\", \"tel\":\"" + tel + "\", \"add\":\"" + add +
-				"\", \"memo\":\"" + memo + "\", \"workid\":\"" + workid + "\"}";
+				"\", \"memo\":\"" + memo + "\"}";
 	}
 	public int getId() {
 		return id;
@@ -42,11 +41,5 @@ public class Worker {
 	}
 	public void setMemo(String memo) {
 		this.memo = memo;
-	}
-	public String getWorkid() {
-		return workid;
-	}
-	public void setWorkid(String workid) {
-		this.workid = workid;
 	}
 }

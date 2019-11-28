@@ -1,11 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.byd.myssm.dao.CarDao">
+	<!-- 
+CREATE TABLE jjqdb.JJQ_MANAGE (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`username` varchar(30) NULL,
+	`password` varchar(30) NULL,
+	`auth` varchar(10) null,
+	PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+CREATE TABLE jjqdb.CAR_INFO (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`cepai` varchar(30) NULL,
+	`company` varchar(30) NULL,
+	`memo` varchar(30) null,
+	PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+CREATE TABLE jjqdb.JJQ_WORKER (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`name` varchar(30) NULL,
+	`tel` varchar(30) NULL,
+	`add` varchar(30) NULL,
+	`memo` varchar(30) null,
+	PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+	
+	-->
 	<!-- 目的：为dao接口方法提供sql语句配置 -->
 	<select id="getWorkerList" resultType="Worker" parameterType="Map">
-		SELECT id,name,tel,'add',memo,workid FROM jjq_worker
+		SELECT * FROM JJQ_WORKER
+	</select>
+	
+	<select id="getManageInfo" resultType="Map" parameterType="Map">
+		SELECT * FROM JJQ_MANAGE WHERE username = #{username}
 	</select>
 	
 </mapper>
