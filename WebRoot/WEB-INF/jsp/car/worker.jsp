@@ -48,7 +48,7 @@ var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"
                 	field: 'id',title: '员工编号',width:'60px',align: 'center',valign: 'middle',
                     sortable: true,footerFormatter: totalTextFormatter
                 },{
-                    field: 'name',title: '员工姓名',width:'150px',sortable: true,
+                    field: 'name',title: '员工姓名',width:'100px',sortable: true,
                     editable: {
                         type: 'text',title: '姓名',
                         validate: function (value) {
@@ -65,7 +65,7 @@ var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"
                     },
                     footerFormatter: totalNameFormatter,align: 'center'
                 }, {
-                    field: 'tel',title: '联系电话',width:'150px',
+                    field: 'tel',title: '联系电话',width:'100px',
                     editable:{
                     	emptytext:'未填写电话',
                     	validate: function (value) {
@@ -117,10 +117,7 @@ var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"
         $table.on('check.bs.table uncheck.bs.table ' +
                 'check-all.bs.table uncheck-all.bs.table', function () {
             $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
-
-            // save your data, here just save the current page
             selections = getIdSelections();
-            // push or splice the selections if you want to save all data selections
         });
         $table.on('expand-row.bs.table', function (e, index, row, $detail) {
             if (index % 2 == 1) {
@@ -182,10 +179,6 @@ var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"
             alert('You click like action, row: ' + JSON.stringify(row));
         },
         'click .remove': function (e, value, row, index) {
-            /* $table.bootstrapTable('remove', {
-                field: 'id',
-                values: [row.id]
-            }); */
             ajaxDel(row.id);
         }
     };
@@ -258,17 +251,11 @@ var company = [{value:"长沙市出租车公司",text:"长沙市出租车公司"
             if (!done && (!this.readyState ||
                     this.readyState == 'loaded' || this.readyState == 'complete')) {
                 done = true;
-                if (callback)
-                    callback();
-
-                // Handle memory leak in IE
+                if (callback) callback();
                 script.onload = script.onreadystatechange = null;
             }
         };
-
         head.appendChild(script);
-
-        // We handle everything using the script element injection
         return undefined;
     }
     

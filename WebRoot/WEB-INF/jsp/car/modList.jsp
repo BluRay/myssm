@@ -23,9 +23,6 @@ request.setAttribute("basePath", basePath);
 <div class="container" style="height:300px">
     <h1></h1>
     <div id="toolbar">
-        <button id="remove" class="btn btn-success" disabled>
-            <i class="glyphicon glyphicon-ok"></i> 增加公司信息
-        </button>
         <select id="moder"><option value="谢鹏">谢鹏</option><option value="孙岭杰">孙岭杰</option></select>
     </div>
     <table id="table" data-toolbar="#toolbar" data-search="true" data-show-refresh="true"

@@ -35,15 +35,62 @@ CREATE TABLE jjqdb.JJQ_WORKER (
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8
 COLLATE=utf8_general_ci;
-	
+
+CREATE TABLE jjqdb.JJQ_WAREHOUSE (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`配件名称` VARCHAR(100),
+	`规格型号` VARCHAR(100),
+	`库存量` VARCHAR(20),
+	`成本价` VARCHAR(20),
+	`维修价` VARCHAR(20),
+	`备注` VARCHAR(100),
+	PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+CREATE TABLE jjqdb.JJQ_WAREHOUSE_INOUT (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`数量` VARCHAR(20),
+	`经手人` VARCHAR(50),
+	`备注` VARCHAR(100),
+	`日期` VARCHAR(20),
+	`资产ID` INT,
+	`当前库存` VARCHAR(20),
+	PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
 	-->
 	<!-- 目的：为dao接口方法提供sql语句配置 -->
 	<select id="getWorkerList" resultType="Worker" parameterType="Map">
-		SELECT * FROM JJQ_WORKER
+		SELECT * FROM JJQ_WORKER WHERE 1=1 
+		<if test="search != null">
+		AND name LIKE CONCAT('%',#{search},'%')
+		</if>
+		<if test="sort!=null">
+			 ORDER BY ${sort} ${order} 
+		</if>
+		LIMIT #{offset}, #{limit}
+	</select>
+	<select id="getWorkerTotal" resultType="int" parameterType="Map">
+		SELECT COUNT(*) FROM JJQ_WORKER WHERE 1=1 
+		<if test="search != null">
+		AND name LIKE CONCAT('%',#{search},'%')
+		</if>
 	</select>
 	
 	<select id="getManageInfo" resultType="Map" parameterType="Map">
 		SELECT * FROM JJQ_MANAGE WHERE username = #{username}
+	</select>
+	<select id="getWarehouseList" resultType="Map" parameterType="Map">
+		SELECT * FROM JJQ_WAREHOUSE WHERE 1=1 
+		<if test="sort!=null">
+			 ORDER BY ${sort} ${order} 
+		</if>
+		LIMIT #{offset}, #{limit}
 	</select>
 	
 </mapper>

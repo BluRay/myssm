@@ -50,11 +50,16 @@ public class CarController {
 	private String worker(Model model) {
 		return "car/worker";
 	}
+
+	@RequestMapping(value = "/warehouse", method = RequestMethod.GET)
+	private String warehouse(Model model) {
+		return "car/warehouse";
+	}
 	
 	@RequestMapping(value = "/getCarList", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
 	@ResponseBody
 	private String getCarList(@Param("search") String search,@Param("sort") String sort,@Param("order") String order,@Param("offset") int offset,@Param("limit") int limit) throws IOException{				
-		if (search!= null) search = new String(search.getBytes("ISO-8859-1"), "UTF-8");
+		//if (search!= null) search = new String(search.getBytes("ISO-8859-1"), "UTF-8");
 		List<Car> list = new ArrayList<Car>();
 		list = carService.getList(search,sort,order,offset,limit);
 		int total = carService.getTotalCount(search);
@@ -64,10 +69,11 @@ public class CarController {
 	@RequestMapping(value = "/getWorkerList", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
 	@ResponseBody
 	private String getWorkerList(@Param("search") String search,@Param("sort") String sort,@Param("order") String order,@Param("offset") int offset,@Param("limit") int limit) throws IOException{				
-		if (search!= null) search = new String(search.getBytes("ISO-8859-1"), "UTF-8");
+		//if (search!= null) search = new String(search.getBytes("ISO-8859-1"), "UTF-8");
+		System.out.println("-->search : " + search);
 		List<Worker> list = new ArrayList<Worker>();
 		list = carService.getWorkerList(search, sort, order, offset, limit);
-		int total = 0;
+		int total = carService.getWorkerTotal(search);
 		return new Result<List<Worker>>(true,list,total).toJsonString();
 	}
 	
@@ -90,7 +96,7 @@ public class CarController {
 	@RequestMapping(value = "/getCompanyList", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
 	@ResponseBody
 	private String getCompanyList(@Param("search") String search,@Param("sort") String sort,@Param("order") String order,@Param("offset") int offset,@Param("limit") int limit) throws IOException{				
-		if (search!= null) search = new String(search.getBytes("ISO-8859-1"), "UTF-8");
+		//if (search!= null) search = new String(search.getBytes("ISO-8859-1"), "UTF-8");
 		logger.info("---->CarController::getCompanyList sort = " + sort + ";order = " + order + ";offset = " + offset + ";limit = " + limit);
 		List<Company> list = new ArrayList<Company>();
 		list = carService.getCompanyList(search,sort,order,offset,limit);
@@ -123,6 +129,12 @@ public class CarController {
 		return new Result<List<Modinfo>>(true,list).toJsonString();
 		//return "{\"success\":true}";
 		//默认查询上一月维修数据
+	}
+	
+	@RequestMapping(value = "/addWareHouse", method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	private String addWareHouse(@Param("pjmc") String pjmc,@Param("pjxh") String pjxh){
+		return "{\"success\":false,\"msg\":\"产品已存在!\"}";
 	}
 
 }

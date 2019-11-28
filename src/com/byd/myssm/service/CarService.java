@@ -37,4 +37,5 @@ public interface CarService {
 	List<Modinfo> getModList(String search,String moder,String date);
 	
 	public List<Worker> getWorkerList(String search,String sort, String asc, int offset, int limit);
+	public int getWorkerTotal(String search);
 }

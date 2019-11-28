@@ -357,8 +357,12 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public List<Worker> getWorkerList(String search,String sort, String asc, int offset, int limit){
 		List<Worker> list = new ArrayList<Worker>();
-		list = carDao.getWorkerList(sort, sort, offset, limit);
+		list = carDao.getWorkerList(search,sort, asc, offset, limit);
 		return list;
+	}
+	@Override
+	public int getWorkerTotal(String search) {
+		return carDao.getWorkerTotal(search);
 	}
 	
 }
